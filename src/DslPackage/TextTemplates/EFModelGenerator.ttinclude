@@ -1012,7 +1012,7 @@
                   Output($"[{navigationProperty.CustomAttributes.Trim('[', ']')}]");
 
                if (!string.IsNullOrWhiteSpace(navigationProperty.Summary))
-                  Output($"[Description(\"{navigationProperty.Summary.Replace("\"", "\\\"")}\")]");
+                  Output($"[Description(@\"{navigationProperty.Summary.Replace("\"", "\\\"")}\")]");
 
                if (!string.IsNullOrWhiteSpace(navigationProperty.DisplayText))
                   Output($"[Display(Name=\"{navigationProperty.DisplayText.Replace("\"", "\\\"")}\")]");

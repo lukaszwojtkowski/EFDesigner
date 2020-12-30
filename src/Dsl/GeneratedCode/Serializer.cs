@@ -2988,6 +2988,23 @@ namespace Sawczyn.EFDesigner.EFModel
 	            }
 	         }
 	      }
+	      // ExcludeFromDBContext
+	      if (!serializationContext.Result.Failed)
+	      {
+	         string attribExcludeFromDBContext = EFModelSerializationHelper.Instance.ReadAttribute(serializationContext, element, reader, "excludeFromDBContext");
+	         if (attribExcludeFromDBContext != null)
+	         {
+	            global::System.Boolean valueOfExcludeFromDBContext;
+	            if (DslModeling::SerializationUtilities.TryGetValue<global::System.Boolean>(serializationContext, attribExcludeFromDBContext, out valueOfExcludeFromDBContext))
+	            {
+	               instanceOfModelClass.ExcludeFromDBContext = valueOfExcludeFromDBContext;
+	            }
+	            else
+	            {   // Invalid property value, ignored.
+	               EFModelSerializationBehaviorSerializationMessages.IgnoredPropertyValue(serializationContext, reader, "excludeFromDBContext", typeof(global::System.Boolean), attribExcludeFromDBContext);
+	            }
+	         }
+	      }
 	   }
 	
 	   /// <summary>
@@ -3990,6 +4007,16 @@ namespace Sawczyn.EFDesigner.EFModel
 	            {   // No need to write the value out if it's the same as default value.
 	               EFModelSerializationHelper.Instance.WriteAttributeString(serializationContext, element, writer, "isDefaultConstructorVisibilityTracking", serializedPropValue);
 	            }
+	         }
+	      }
+	      // ExcludeFromDBContext
+	      if (!serializationContext.Result.Failed)
+	      {
+	         global::System.Boolean propValue = instanceOfModelClass.ExcludeFromDBContext;
+	         string serializedPropValue = DslModeling::SerializationUtilities.GetString<global::System.Boolean>(serializationContext, propValue);
+	         if (!serializationContext.Result.Failed)
+	         {
+	            EFModelSerializationHelper.Instance.WriteAttributeString(serializationContext, element, writer, "excludeFromDBContext", serializedPropValue);
 	         }
 	      }
 	   }

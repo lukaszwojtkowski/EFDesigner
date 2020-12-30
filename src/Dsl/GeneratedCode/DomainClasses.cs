@@ -6917,6 +6917,94 @@ namespace Sawczyn.EFDesigner.EFModel
 		}
 		
 		#endregion
+		#region ExcludeFromDBContext domain property code
+		
+		/// <summary>
+		/// ExcludeFromDBContext domain property Id.
+		/// </summary>
+		public static readonly global::System.Guid ExcludeFromDBContextDomainPropertyId = new global::System.Guid(0x8776b8ac, 0x3648, 0x4a5a, 0xb3, 0x3d, 0xdc, 0x89, 0x6a, 0x1b, 0xef, 0x5c);
+		
+		/// <summary>
+		/// Storage for ExcludeFromDBContext
+		/// </summary>
+		private global::System.Boolean excludeFromDBContextPropertyStorage;
+		
+		/// <summary>
+		/// Gets or sets the value of ExcludeFromDBContext domain property.
+		/// If true, this class won't be add to DBContext
+		/// </summary>
+		[DslDesign::DisplayNameResource("Sawczyn.EFDesigner.EFModel.ModelClass/ExcludeFromDBContext.DisplayName", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::CategoryResource("Sawczyn.EFDesigner.EFModel.ModelClass/ExcludeFromDBContext.Category", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Sawczyn.EFDesigner.EFModel.ModelClass/ExcludeFromDBContext.Description", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslModeling::DomainObjectId("8776b8ac-3648-4a5a-b33d-dc896a1bef5c")]
+		public global::System.Boolean ExcludeFromDBContext
+		{
+			[global::System.Diagnostics.DebuggerStepThrough]
+			get
+			{
+				return excludeFromDBContextPropertyStorage;
+			}
+			[global::System.Diagnostics.DebuggerStepThrough]
+			set
+			{
+				ExcludeFromDBContextPropertyHandler.Instance.SetValue(this, value);
+			}
+		}
+		/// <summary>
+		/// Value handler for the ModelClass.ExcludeFromDBContext domain property.
+		/// </summary>
+		internal sealed partial class ExcludeFromDBContextPropertyHandler : DslModeling::DomainPropertyValueHandler<ModelClass, global::System.Boolean>
+		{
+			private ExcludeFromDBContextPropertyHandler() { }
+		
+			/// <summary>
+			/// Gets the singleton instance of the ModelClass.ExcludeFromDBContext domain property value handler.
+			/// </summary>
+			public static readonly ExcludeFromDBContextPropertyHandler Instance = new ExcludeFromDBContextPropertyHandler();
+		
+			/// <summary>
+			/// Gets the Id of the ModelClass.ExcludeFromDBContext domain property.
+			/// </summary>
+			public sealed override global::System.Guid DomainPropertyId
+			{
+				[global::System.Diagnostics.DebuggerStepThrough]
+				get
+				{
+					return ExcludeFromDBContextDomainPropertyId;
+				}
+			}
+			
+			/// <summary>
+			/// Gets a strongly-typed value of the property on specified element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <returns>Property value.</returns>
+			public override sealed global::System.Boolean GetValue(ModelClass element)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+				return element.excludeFromDBContextPropertyStorage;
+			}
+		
+			/// <summary>
+			/// Sets property value on an element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <param name="newValue">New property value.</param>
+			public override sealed void SetValue(ModelClass element, global::System.Boolean newValue)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+		
+				global::System.Boolean oldValue = GetValue(element);
+				if (newValue != oldValue)
+				{
+					ValueChanging(element, oldValue, newValue);
+					element.excludeFromDBContextPropertyStorage = newValue;
+					ValueChanged(element, oldValue, newValue);
+				}
+			}
+		}
+		
+		#endregion
 		#region IsDatabaseView domain property code
 		
 		/// <summary>

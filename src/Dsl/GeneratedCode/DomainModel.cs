@@ -190,6 +190,7 @@ namespace Sawczyn.EFDesigner.EFModel
 	         new DomainMemberInfo(typeof(ModelClass), "IsPropertyBag", ModelClass.IsPropertyBagDomainPropertyId, typeof(ModelClass.IsPropertyBagPropertyHandler)),
 	         new DomainMemberInfo(typeof(ModelClass), "IsQueryType", ModelClass.IsQueryTypeDomainPropertyId, typeof(ModelClass.IsQueryTypePropertyHandler)),
 	         new DomainMemberInfo(typeof(ModelClass), "ExcludeFromMigrations", ModelClass.ExcludeFromMigrationsDomainPropertyId, typeof(ModelClass.ExcludeFromMigrationsPropertyHandler)),
+	         new DomainMemberInfo(typeof(ModelClass), "ExcludeFromDBContext", ModelClass.ExcludeFromDBContextDomainPropertyId, typeof(ModelClass.ExcludeFromDBContextPropertyHandler)),
 	         new DomainMemberInfo(typeof(ModelClass), "IsDatabaseView", ModelClass.IsDatabaseViewDomainPropertyId, typeof(ModelClass.IsDatabaseViewPropertyHandler)),
 	         new DomainMemberInfo(typeof(ModelClass), "ViewName", ModelClass.ViewNameDomainPropertyId, typeof(ModelClass.ViewNamePropertyHandler)),
 	         new DomainMemberInfo(typeof(ModelClass), "DefaultConstructorVisibility", ModelClass.DefaultConstructorVisibilityDomainPropertyId, typeof(ModelClass.DefaultConstructorVisibilityPropertyHandler)),

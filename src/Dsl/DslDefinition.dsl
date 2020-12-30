@@ -532,7 +532,7 @@
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
-        </DomainProperty>
+        </DomainProperty>        
         <DomainProperty Id="84329360-6f27-42ec-99fe-3b5bff1dc54c" Description="If true (the default), code will be generated for this class. If false, it is assumed to be referenced from another assembly." Name="GenerateCode" DisplayName="Generate Code" DefaultValue="true" Category="Code Generation">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
@@ -549,6 +549,11 @@
           </Type>
         </DomainProperty>
         <DomainProperty Id="37b0398e-caf1-45d7-acf4-8a44ddcb8543" Description="If true, this class won't be involved in database migrations" Name="ExcludeFromMigrations" DisplayName="Exclude From Migrations" Category="Database">
+          <Type>
+            <ExternalTypeMoniker Name="/System/Boolean" />
+          </Type>
+        </DomainProperty>
+        <DomainProperty Id="8776B8AC-3648-4A5A-B33D-DC896A1BEF5C" Description="If true, this class won't be add to DBContext" Name="ExcludeFromDBContext" DisplayName="Exclude From DBContext" Category="Database">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>

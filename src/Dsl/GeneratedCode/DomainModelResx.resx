@@ -1009,6 +1009,18 @@
     <value>Database</value>
     <comment>Category for DomainProperty &apos;ExcludeFromMigrations&apos; on DomainClass &apos;ModelClass&apos;</comment>
   </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelClass/ExcludeFromDBContext.Description" xml:space="preserve">
+    <value>If true, this class won&apos;t be add to DBContext</value>
+    <comment>Description for DomainProperty &apos;ExcludeFromDBContext&apos; on DomainClass &apos;ModelClass&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelClass/ExcludeFromDBContext.DisplayName" xml:space="preserve">
+    <value>Exclude From DBContext</value>
+    <comment>DisplayName for DomainProperty &apos;ExcludeFromDBContext&apos; on DomainClass &apos;ModelClass&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelClass/ExcludeFromDBContext.Category" xml:space="preserve">
+    <value>Database</value>
+    <comment>Category for DomainProperty &apos;ExcludeFromDBContext&apos; on DomainClass &apos;ModelClass&apos;</comment>
+  </data>
   <data name="Sawczyn.EFDesigner.EFModel.ModelClass/IsDatabaseView.Description" xml:space="preserve">
     <value>If true, this class is persisted in a view in the database</value>
     <comment>Description for DomainProperty &apos;IsDatabaseView&apos; on DomainClass &apos;ModelClass&apos;</comment>

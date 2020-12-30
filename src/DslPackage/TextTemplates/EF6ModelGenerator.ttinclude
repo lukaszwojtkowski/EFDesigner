@@ -610,7 +610,7 @@
             Output("#region DbSets");
             PluralizationService pluralizationService = ModelRoot.PluralizationService;
 
-            foreach (ModelClass modelClass in modelRoot.Classes.Where(x => !x.IsDependentType).OrderBy(x => x.Name))
+            foreach (ModelClass modelClass in modelRoot.Classes.Where(x => !x.IsDependentType && !x.ExcludeFromDBContext).OrderBy(x => x.Name))
             {
                string dbSetName;
 
@@ -685,7 +685,7 @@
             List<string> foreignKeyColumns = new List<string>();
             List<string> declaredShadowProperties = new List<string>();
 
-            foreach (ModelClass modelClass in modelRoot.Classes.OrderBy(x => x.Name))
+            foreach (ModelClass modelClass in modelRoot.Classes.Where(w => !w.ExcludeFromDBContext).OrderBy(x => x.Name))
             {
                segments.Clear();
                foreignKeyColumns.Clear();

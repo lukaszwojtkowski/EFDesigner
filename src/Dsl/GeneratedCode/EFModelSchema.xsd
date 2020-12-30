@@ -628,6 +628,12 @@
             <xsd:documentation>If true, Model.DefaultConstructorVisibility tracks ModelRoot.EntityDefaultConstructorVisibilityDefault</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
+        <!-- Property: ExcludeFromDBContext -->
+        <xsd:attribute name="excludeFromDBContext" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation>If true, this class won&apos;t be add to DBContext</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

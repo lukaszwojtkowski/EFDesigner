@@ -139,7 +139,7 @@
 
          protected virtual void ConfigureModelClasses(List<string> segments, ModelClass[] classesWithTables, List<string> foreignKeyColumns, List<Association> visited)
          {
-            foreach (ModelClass modelClass in modelRoot.Classes.OrderBy(x => x.Name))
+            foreach (ModelClass modelClass in modelRoot.Classes.Where(w => !w.ExcludeFromDBContext).OrderBy(x => x.Name))
             {
                segments.Clear();
                foreignKeyColumns.Clear();
@@ -364,7 +364,7 @@
             Output("#region DbSets");
             PluralizationService pluralizationService = ModelRoot.PluralizationService;
 
-            foreach (ModelClass modelClass in modelRoot.Classes.Where(x => !x.IsDependentType).OrderBy(x => x.Name))
+            foreach (ModelClass modelClass in modelRoot.Classes.Where(x => !x.IsDependentType && !x.ExcludeFromDBContext).OrderBy(x => x.Name))
             {
                string dbSetName;
 
