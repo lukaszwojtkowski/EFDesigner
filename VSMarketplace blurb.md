@@ -1,19 +1,13 @@
 This Visual Studio 2019 extension is the easiest way to add a consistently correct Entity Framework model to your project with support for EF6, EFCore2, EFCore3 and EFCore5.
 
-It's an opinionated code generator, adding a new file type (.efmodel) that allows for fast, easy and, most importantly, **visual** design 
-of persistent classes. Inheritance, unidirectional and bidirectional associations are all supported. Enumerations are also included in 
-the visual model, as is the ability to add text blocks to explain potentially arcane parts of your design.
+It's an opinionated code generator, adding a new file type (.efmodel) that allows for fast, easy and, most importantly, **visual** design of persistent classes. Inheritance, unidirectional and bidirectional associations are all supported. Enumerations are also included in the visual model, as is the ability to add text blocks to explain potentially arcane parts of your design.
 
 <img src="https://msawczyn.github.io/EFDesigner/images/Designer.jpg">
 
-While giving you complete control over how the code is generated you'll be able to create, out of the box, sophisticated, 
-consistent and **correct** Entity Framework code that can be regenerated when your model changes. And, since the code is written using 
-partial classes, any additions you make to your generated code are retained across subsequent generations.
-The designer doesn't need to be present to use the code that's generated - it generates standard C#, using the code-first, fluent API - so the tool doesn't
-become a dependency to your project.
+While giving you complete control over how the code is generated you'll be able to create, out of the box, sophisticated, consistent and **correct** Entity Framework code that can be regenerated when your model changes. And, since the code is written using partial classes, any additions you make to your generated code are retained across subsequent generations.
+The designer doesn't need to be present to use the code that's generated - it generates standard C#, using the code-first, fluent API - so the tool doesn't become a dependency to your project.
 
-If you are used to the EF visual modeling that comes with Visual Studio, you'll be pretty much at home. The goal was to duplicate 
-at least those features and, in addition, add all the little things that _should_ have been there. Things like:
+If you are used to the EF visual modeling that comes with Visual Studio, you'll be pretty much at home. The goal was to duplicate at least those features and, in addition, add all the little things that _should_ have been there. Things like:
 
 *   importing entities from C# source, or existing DbContext definitions (including their entities) from compiled EF6 or EFCore assemblies
 *   multiple views of your model to highlight important aspects of your design
@@ -29,6 +23,18 @@ and many other nice-to-have bits.
 For comprehensive documentation, please visit [the project's documentation site](https://msawczyn.github.io/EFDesigner/).
 
 **ChangeLog**
+
+**3.0.3**
+   - **[NEW]** Added VS UML icon for model file in solution explorer (thanks to https://github.com/dcastenholz for the change)
+   - **[NEW]** Classes with custom interfaces can now display an indicator with a tooltip indicating the interface type(s). This glyph is enabled/disabled at model level.
+   - **[NEW]** Added ability to specify that an association should be automatically included in any queries that use it (EFCore5 only). The association connector will appear bolder if at least one end is auto-included.
+   - **[NEW]** Updated association tooltip to indicate which, if any, end is auto-included
+   - Fix to ensure database collation overrides don't get applied to the wrong column types
+   - Fix to allow 1..1 association to owned types in EFCore5 (see https://github.com/msawczyn/EFDesigner/issues/252)
+   - Fix to calculate EF version number correctly when "Latest" was specified in designer (see https://github.com/msawczyn/EFDesigner/issues/254)
+   - Fix to generate correct DeleteBehavior enum values in EFCore < v3 (see https://github.com/msawczyn/EFDesigner/issues/257)
+   - Removed `INotifyPropertyChanged` option from designer. Implementers wanting this interface can add it to a partial class file as any other interface, as there's really nothing special about it.
+   - Generated code now honors the `ExcludeFromMigration` setting for a class
 
 **3.0.2**
    - **[NEW]** Added setting on designer surface to set visibility defaults for entity default constructors, and overrides for that setting on the entities

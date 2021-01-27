@@ -68,7 +68,7 @@ namespace Sawczyn.EFDesigner.EFModel
             if (bidirectionalAssociation != null && bidirectionalAssociation.SourceImplementNotify)
                propertyDescriptors.Remove("SourceAutoProperty");
 
-            // we're only allowing ..1 and ..0-1 associations to not be autoproperties
+            // we're only allowing ..1 and ..0-1 associations to have backing fields
             if (association.TargetMultiplicity == Multiplicity.ZeroMany)
                propertyDescriptors.Remove("TargetAutoProperty");
             if (bidirectionalAssociation != null && bidirectionalAssociation.SourceMultiplicity == Multiplicity.ZeroMany)
@@ -82,13 +82,13 @@ namespace Sawczyn.EFDesigner.EFModel
             }
 
             // only show backing field name and property access mode if not an autoproperty
-            if (association.TargetAutoProperty || association.TargetMultiplicity == Multiplicity.ZeroMany)
+            if (association.TargetAutoProperty)
             {
                propertyDescriptors.Remove("TargetBackingFieldName");
                propertyDescriptors.Remove("TargetPropertyAccessMode");
             }
 
-            if (bidirectionalAssociation == null || (bidirectionalAssociation.SourceAutoProperty || bidirectionalAssociation.SourceMultiplicity == Multiplicity.ZeroMany))
+            if (bidirectionalAssociation == null || bidirectionalAssociation.SourceAutoProperty)
             {
                propertyDescriptors.Remove("SourceBackingFieldName");
                propertyDescriptors.Remove("SourcePropertyAccessMode");

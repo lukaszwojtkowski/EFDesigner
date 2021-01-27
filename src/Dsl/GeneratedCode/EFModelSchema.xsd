@@ -375,6 +375,18 @@
             <xsd:documentation>The pattern to use for generating shadow foreign key property names</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
+        <!-- Property: AutoPropertyDefault -->
+        <xsd:attribute name="autoPropertyDefault" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation>Default value for attribute AutoProperty setting</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: ShowInterfaceIndicators -->
+        <xsd:attribute name="showInterfaceIndicators" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation>If true, will display a UML interface glyph on classes that have custom interfaces defined</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -632,6 +644,12 @@
         <xsd:attribute name="excludeFromDBContext" type="xsd:boolean" >
           <xsd:annotation>
             <xsd:documentation>If true, this class won&apos;t be add to DBContext</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: IsAutoPropertyDefaultTracking -->
+        <xsd:attribute name="isAutoPropertyDefaultTracking" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation>If true, ModelClass.AutoPropertyDefault tracks ModelRoot.AutoPropertyDefault</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
       </xsd:extension>
@@ -1375,6 +1393,12 @@
             <xsd:documentation>If true, the property for this end will be abstract</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
+        <!-- Property: TargetAutoInclude -->
+        <xsd:attribute name="targetAutoInclude" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation>If true, the property at End1 will be automatically included in queries</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -1623,6 +1647,12 @@
         <xsd:attribute name="isSourceAbstract" type="xsd:boolean" >
           <xsd:annotation>
             <xsd:documentation>If true, the property for this end will be abstract</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: SourceAutoInclude -->
+        <xsd:attribute name="sourceAutoInclude" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation>If true, the property at End2 will be automatically included in queries</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
       </xsd:extension>

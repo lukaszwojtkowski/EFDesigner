@@ -11,8 +11,6 @@ using Microsoft.VisualStudio.Modeling.Validation;
 
 using Sawczyn.EFDesigner.EFModel.Extensions;
 
-#pragma warning disable 1591
-
 namespace Sawczyn.EFDesigner.EFModel
 {
    [ValidationState(ValidationState.Enabled)]
@@ -304,7 +302,12 @@ namespace Sawczyn.EFDesigner.EFModel
 
       public double GetEntityFrameworkPackageVersionNum()
       {
-         string[] parts = EntityFrameworkPackageVersion.Split('.');
+         string packageVersion = EntityFrameworkPackageVersion;
+
+         if (packageVersion.EndsWith("Latest"))
+            packageVersion = NuGetHelper.EFPackageVersions[EntityFrameworkVersion].Where(x => !x.EndsWith("Latest")).OrderByDescending(x => x).FirstOrDefault();
+
+         string[] parts = (packageVersion ?? "").Split('.');
 
          string resultString = parts.Length > 1
                                   ? $"{parts[0]}.{parts[1]}"
@@ -320,7 +323,7 @@ namespace Sawczyn.EFDesigner.EFModel
       #region Validation methods
 
       [ValidationMethod(ValidationCategories.Open | ValidationCategories.Save | ValidationCategories.Menu)]
-      // ReSharper disable once UnusedMember.Local
+      [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Called by validatioin")]
       private void ConnectionStringMustExist(ValidationContext context)
       {
          if (!Classes.Any() && !Enums.Any())
@@ -334,7 +337,7 @@ namespace Sawczyn.EFDesigner.EFModel
       }
 
       [ValidationMethod(ValidationCategories.Open | ValidationCategories.Save | ValidationCategories.Menu)]
-      // ReSharper disable once UnusedMember.Local
+      [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Called by validatioin")]
       private void SummaryDescriptionIsEmpty(ValidationContext context)
       {
          if (string.IsNullOrWhiteSpace(Summary) && WarnOnMissingDocumentation)
@@ -528,5 +531,33 @@ namespace Sawczyn.EFDesigner.EFModel
       }
 
       #endregion Namespace tracking property
+
+      #region AutoPropertyDefault tracking property
+
+      /// <summary>
+      /// Updates tracking properties when the IsImplementNotify value changes
+      /// </summary>
+      /// <param name="oldValue">Prior value</param>
+      /// <param name="newValue">Current value</param>
+      protected virtual void OnAutoPropertyDefaultChanged(bool oldValue, bool newValue)
+      {
+         TrackingHelper.UpdateTrackingCollectionProperty(Store,
+                                                         Classes,
+                                                         ModelClass.AutoPropertyDefaultDomainPropertyId,
+                                                         ModelClass.IsAutoPropertyDefaultTrackingDomainPropertyId);
+      }
+
+      internal sealed partial class AutoPropertyDefaultPropertyHandler
+      {
+         protected override void OnValueChanged(ModelRoot element, bool oldValue, bool newValue)
+         {
+            base.OnValueChanged(element, oldValue, newValue);
+
+            if (!element.Store.InUndoRedoOrRollback)
+               element.OnAutoPropertyDefaultChanged(oldValue, newValue);
+         }
+      }
+
+      #endregion AutoPropertyDefault tracking property
    }
 }

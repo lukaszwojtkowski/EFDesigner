@@ -195,6 +195,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Package.tt</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MefExtension\CommandExtensionRegistrar.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

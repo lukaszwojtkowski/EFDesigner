@@ -2,8 +2,16 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Sandbox_EFCore5Net5_Test</AssemblyName>
+    <RootNamespace>Sandbox_EFCore5Net5_Test</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="_ReSharper.Caches\**" />
+    <EmbeddedResource Remove="_ReSharper.Caches\**" />
+    <None Remove="_ReSharper.Caches\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Context.tt" />
@@ -17,13 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0-rc.1.20451.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0-rc.1.20451.13">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.0-rc.1.20451.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0-rc.1.20451.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="2.0.0-preview1-final" />
   </ItemGroup>
 
@@ -43,6 +53,10 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

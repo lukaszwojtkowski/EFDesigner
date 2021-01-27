@@ -12,8 +12,8 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
    public partial class GeneratedTextTransformation
    {
       #region Template
-      // EFDesigner v3.0.2.0
-      // Copyright (c) 2017-2020 Michael Sawczyn
+      // EFDesigner v3.0.3
+      // Copyright (c) 2017-2021 Michael Sawczyn
       // https://github.com/msawczyn/EFDesigner
 
       protected void NL()
@@ -131,8 +131,10 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
             modelRoot = host.ModelRoot;
          }
 
+#pragma warning disable IDE1006 // Naming Styles
          protected ModelRoot modelRoot { get; set; }
          protected GeneratedTextTransformation host { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
 
          // implementations delegated to the surrounding GeneratedTextTransformation for backward compatability
          protected void NL() { host.NL(); }
@@ -194,7 +196,6 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
             }
          }
 
-         [SuppressMessage("ReSharper", "ConvertIfStatementToReturnStatement")]
          protected static string CreateShadowPropertyName(Association association, List<string> foreignKeyColumns, ModelAttribute identityAttribute)
          {
             string separator = identityAttribute.ModelClass.ModelRoot.ShadowKeyNamePattern == ShadowKeyPattern.TableColumn ? "" : "_";
@@ -462,9 +463,6 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
             if (!string.IsNullOrEmpty(modelClass.CustomInterfaces))
                bases.AddRange(modelClass.CustomInterfaces.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
 
-            if (modelClass.ImplementNotify)
-               bases.Add("INotifyPropertyChanged");
-
             string baseClass = string.Join(", ", bases.Select(x => x.Trim()));
 
             if (!string.IsNullOrEmpty(modelClass.Summary))
@@ -496,7 +494,6 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
             WriteConstructor(modelClass);
             WriteProperties(modelClass);
             WriteNavigationProperties(modelClass);
-            WriteNotifyPropertyChanged(modelClass);
 
             Output("}");
 
@@ -697,25 +694,25 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                             : $"this.{modelAttribute.Name} = {quote}{FullyQualified(modelAttribute.InitialValue)}{quote};");
                }
 
+               // all required navigation properties that aren't a 1..1 relationship
                foreach (NavigationProperty requiredNavigationProperty in modelClass.AllRequiredNavigationProperties()
                                                                                    .Where(np => np.AssociationObject.SourceMultiplicity != Sawczyn.EFDesigner.EFModel.Multiplicity.One
                                                                                              || np.AssociationObject.TargetMultiplicity != Sawczyn.EFDesigner.EFModel.Multiplicity.One))
                {
+                  NavigationProperty otherSide = requiredNavigationProperty.OtherSide;
                   string parameterName = requiredNavigationProperty.PropertyName.ToLower();
                   Output($"if ({parameterName} == null) throw new ArgumentNullException(nameof({parameterName}));");
 
-                  if (requiredNavigationProperty.IsCollection)
-                     Output($"{requiredNavigationProperty.PropertyName}.Add({parameterName});");
-                  else if (requiredNavigationProperty.ConstructorParameterOnly)
-                  {
-                     UnidirectionalAssociation association = requiredNavigationProperty.AssociationObject as UnidirectionalAssociation;
+                  Output(requiredNavigationProperty.IsCollection
+                            ? $"{requiredNavigationProperty.PropertyName}.Add({parameterName});"
+                            : $"this.{requiredNavigationProperty.PropertyName} = {parameterName};");
 
-                     Output(association.TargetMultiplicity == Sawczyn.EFDesigner.EFModel.Multiplicity.ZeroMany
-                               ? $"{requiredNavigationProperty.PropertyName}.{association.TargetPropertyName}.Add(this);"
-                               : $"{requiredNavigationProperty.PropertyName}.{association.TargetPropertyName} = this;");
+                  if (!string.IsNullOrEmpty(otherSide.PropertyName))
+                  {
+                     Output(otherSide.IsCollection 
+                               ? $"{parameterName}.{otherSide.PropertyName}.Add(this);" 
+                               : $"{parameterName}.{otherSide.PropertyName} = this;");
                   }
-                  else
-                     Output($"this.{requiredNavigationProperty.PropertyName} = {parameterName};");
 
                   NL();
                }
@@ -725,16 +722,15 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                                                                                     && (x.IsCollection || x.ClassType.IsDependentType)
                                                                                     && !x.ConstructorParameterOnly))
                {
-                  if (!navigationProperty.IsCollection)
+                  if (!navigationProperty.IsCollection && navigationProperty.ClassType.IsDependentType)
                      Output($"this.{navigationProperty.PropertyName} = new {navigationProperty.ClassType.FullName}();");
-                  else
+                  else if (navigationProperty.IsCollection)
                   {
                      string collectionType = GetFullContainerName(navigationProperty.AssociationObject.CollectionClass, navigationProperty.ClassType.FullName);
                      Output($"this.{navigationProperty.PropertyName} = new {collectionType}();");
                   }
                }
 
-               NL();
                Output("Init();");
                Output("}");
                NL();
@@ -829,6 +825,16 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                ++lineCount;
             }
 
+            WriteRequiredNavigationsInConstructorBody(modelClass, ref lineCount);
+
+            if (lineCount > 0)
+               NL();
+
+            Output("Init();");
+         }
+
+         protected virtual void WriteRequiredNavigationsInConstructorBody(ModelClass modelClass, ref int lineCount)
+         {
             foreach (NavigationProperty navigationProperty in modelClass.LocalNavigationProperties()
                                                                         .Where(x => x.AssociationObject.Persistent
                                                                                  && x.Required
@@ -846,11 +852,6 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
 
                ++lineCount;
             }
-
-            if (lineCount > 0)
-               NL();
-
-            Output("Init();");
          }
 
          protected void WriteEnum(ModelEnum modelEnum)
@@ -979,7 +980,7 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                   Output("/// <summary>");
 
                   if (!string.IsNullOrEmpty(comment) && !string.IsNullOrEmpty(navigationProperty.Summary))
-                     comment = comment + "<br/>";
+                     comment += "<br/>";
 
                   if (!string.IsNullOrEmpty(comment))
                      WriteCommentBody(comment);
@@ -1053,24 +1054,6 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                   Output("}");
                }
 
-               NL();
-            }
-         }
-
-         protected void WriteNotifyPropertyChanged(ModelClass modelClass)
-         {
-            if (modelClass.ImplementNotify || modelClass.LocalNavigationProperties().Any(x => x.ImplementNotify) || modelClass.Attributes.Any(x => x.ImplementNotify))
-            {
-               string modifier = modelClass.Superclass != null && modelClass.Superclass.ImplementNotify
-                                    ? "override"
-                                    : "virtual";
-
-               Output($"public {modifier} event PropertyChangedEventHandler PropertyChanged;");
-               NL();
-               Output($"protected {modifier} void OnPropertyChanged([CallerMemberName] string propertyName = null)");
-               Output("{");
-               Output("PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));");
-               Output("}");
                NL();
             }
          }

@@ -729,6 +729,30 @@
     <value>Database</value>
     <comment>Category for DomainProperty &apos;ShadowKeyNamePattern&apos; on DomainClass &apos;ModelRoot&apos;</comment>
   </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelRoot/AutoPropertyDefault.Description" xml:space="preserve">
+    <value>Default value for attribute AutoProperty setting</value>
+    <comment>Description for DomainProperty &apos;AutoPropertyDefault&apos; on DomainClass &apos;ModelRoot&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelRoot/AutoPropertyDefault.DisplayName" xml:space="preserve">
+    <value>AutoProperty Default</value>
+    <comment>DisplayName for DomainProperty &apos;AutoPropertyDefault&apos; on DomainClass &apos;ModelRoot&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelRoot/AutoPropertyDefault.Category" xml:space="preserve">
+    <value>Code Generation</value>
+    <comment>Category for DomainProperty &apos;AutoPropertyDefault&apos; on DomainClass &apos;ModelRoot&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelRoot/ShowInterfaceIndicators.Description" xml:space="preserve">
+    <value>If true, will display a UML interface glyph on classes that have custom interfaces defined</value>
+    <comment>Description for DomainProperty &apos;ShowInterfaceIndicators&apos; on DomainClass &apos;ModelRoot&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelRoot/ShowInterfaceIndicators.DisplayName" xml:space="preserve">
+    <value>Show Interface Indicators</value>
+    <comment>DisplayName for DomainProperty &apos;ShowInterfaceIndicators&apos; on DomainClass &apos;ModelRoot&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelRoot/ShowInterfaceIndicators.Category" xml:space="preserve">
+    <value>Designer</value>
+    <comment>Category for DomainProperty &apos;ShowInterfaceIndicators&apos; on DomainClass &apos;ModelRoot&apos;</comment>
+  </data>
   <data name="Sawczyn.EFDesigner.EFModel.ModelClass.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;ModelClass&apos;</comment>
@@ -1064,6 +1088,22 @@
   <data name="Sawczyn.EFDesigner.EFModel.ModelClass/IsDefaultConstructorVisibilityTracking.DisplayName" xml:space="preserve">
     <value>Is Default Constructor Visibility Tracking</value>
     <comment>DisplayName for DomainProperty &apos;IsDefaultConstructorVisibilityTracking&apos; on DomainClass &apos;ModelClass&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelClass/IsAutoPropertyDefaultTracking.Description" xml:space="preserve">
+    <value>If true, ModelClass.AutoPropertyDefault tracks ModelRoot.AutoPropertyDefault</value>
+    <comment>Description for DomainProperty &apos;IsAutoPropertyDefaultTracking&apos; on DomainClass &apos;ModelClass&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelClass/IsAutoPropertyDefaultTracking.DisplayName" xml:space="preserve">
+    <value>Is Auto Property Default Tracking</value>
+    <comment>DisplayName for DomainProperty &apos;IsAutoPropertyDefaultTracking&apos; on DomainClass &apos;ModelClass&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelClass/ShouldShowInterfaceGlyph.Description" xml:space="preserve">
+    <value>Used internally to determine whether an interface glyph should be shown on the diagram for the class</value>
+    <comment>Description for DomainProperty &apos;ShouldShowInterfaceGlyph&apos; on DomainClass &apos;ModelClass&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.ModelClass/ShouldShowInterfaceGlyph.DisplayName" xml:space="preserve">
+    <value>Should Show Interface Glyph</value>
+    <comment>DisplayName for DomainProperty &apos;ShouldShowInterfaceGlyph&apos; on DomainClass &apos;ModelClass&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.ModelAttribute.Description" xml:space="preserve">
     <value>An attribute of a class.</value>
@@ -1774,7 +1814,7 @@
     <comment>Description for DomainProperty &apos;TargetPropertyName&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetPropertyName.DisplayName" xml:space="preserve">
-    <value>End1 Navigation Property</value>
+    <value>End2 Navigation Property</value>
     <comment>DisplayName for DomainProperty &apos;TargetPropertyName&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetPropertyName.Category" xml:space="preserve">
@@ -1994,7 +2034,7 @@
     <comment>DisplayName for DomainProperty &apos;TargetPropertyNameDisplay&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetPropertyNameDisplay.Category" xml:space="preserve">
-    <value>End2</value>
+    <value>End 2</value>
     <comment>Category for DomainProperty &apos;TargetPropertyNameDisplay&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/Name.Description" xml:space="preserve">
@@ -2022,7 +2062,7 @@
     <comment>Description for DomainProperty &apos;TargetBackingFieldName&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetBackingFieldName.DisplayName" xml:space="preserve">
-    <value>End1 Backing Field</value>
+    <value>End2 Backing Field</value>
     <comment>DisplayName for DomainProperty &apos;TargetBackingFieldName&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetBackingFieldName.Category" xml:space="preserve">
@@ -2034,7 +2074,7 @@
     <comment>Description for DomainProperty &apos;TargetPropertyAccessMode&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetPropertyAccessMode.DisplayName" xml:space="preserve">
-    <value>End1 Property Access Mode</value>
+    <value>End2 Property Access Mode</value>
     <comment>DisplayName for DomainProperty &apos;TargetPropertyAccessMode&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetPropertyAccessMode.Category" xml:space="preserve">
@@ -2046,7 +2086,7 @@
     <comment>Description for DomainProperty &apos;TargetAutoProperty&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetAutoProperty.DisplayName" xml:space="preserve">
-    <value>End1 Is Auto Property</value>
+    <value>End2 Is Auto Property</value>
     <comment>DisplayName for DomainProperty &apos;TargetAutoProperty&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/TargetAutoProperty.Category" xml:space="preserve">
@@ -2066,12 +2106,24 @@
     <comment>Description for DomainProperty &apos;IsTargetAbstract&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/IsTargetAbstract.DisplayName" xml:space="preserve">
-    <value>End1 Is Abstract</value>
+    <value>End2 Is Abstract</value>
     <comment>DisplayName for DomainProperty &apos;IsTargetAbstract&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/IsTargetAbstract.Category" xml:space="preserve">
-    <value>End2</value>
+    <value>End 2</value>
     <comment>Category for DomainProperty &apos;IsTargetAbstract&apos; on DomainClass &apos;Association&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.Association/TargetAutoInclude.Description" xml:space="preserve">
+    <value>If true, the property at End1 will be automatically included in queries</value>
+    <comment>Description for DomainProperty &apos;TargetAutoInclude&apos; on DomainClass &apos;Association&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.Association/TargetAutoInclude.DisplayName" xml:space="preserve">
+    <value>End2 Auto Include</value>
+    <comment>DisplayName for DomainProperty &apos;TargetAutoInclude&apos; on DomainClass &apos;Association&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.Association/TargetAutoInclude.Category" xml:space="preserve">
+    <value>End 2</value>
+    <comment>Category for DomainProperty &apos;TargetAutoInclude&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.Association/Source.Description" xml:space="preserve">
     <value></value>
@@ -2246,7 +2298,7 @@
     <comment>Description for DomainProperty &apos;SourcePropertyName&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourcePropertyName.DisplayName" xml:space="preserve">
-    <value>End2 Navigation Property</value>
+    <value>End1 Navigation Property</value>
     <comment>DisplayName for DomainProperty &apos;SourcePropertyName&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourcePropertyName.Category" xml:space="preserve">
@@ -2330,7 +2382,7 @@
     <comment>DisplayName for DomainProperty &apos;SourcePropertyNameDisplay&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourcePropertyNameDisplay.Category" xml:space="preserve">
-    <value>End2</value>
+    <value>End 2</value>
     <comment>Category for DomainProperty &apos;SourcePropertyNameDisplay&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourcePropertyAccessMode.Description" xml:space="preserve">
@@ -2338,7 +2390,7 @@
     <comment>Description for DomainProperty &apos;SourcePropertyAccessMode&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourcePropertyAccessMode.DisplayName" xml:space="preserve">
-    <value>End 2 Property Access Mode</value>
+    <value>End1 Property Access Mode</value>
     <comment>DisplayName for DomainProperty &apos;SourcePropertyAccessMode&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourcePropertyAccessMode.Category" xml:space="preserve">
@@ -2350,7 +2402,7 @@
     <comment>Description for DomainProperty &apos;SourceBackingFieldName&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourceBackingFieldName.DisplayName" xml:space="preserve">
-    <value>End 2 Backing Field</value>
+    <value>End1 Backing Field</value>
     <comment>DisplayName for DomainProperty &apos;SourceBackingFieldName&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourceBackingFieldName.Category" xml:space="preserve">
@@ -2362,7 +2414,7 @@
     <comment>Description for DomainProperty &apos;SourceAutoProperty&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourceAutoProperty.DisplayName" xml:space="preserve">
-    <value>End2 Is Auto Property</value>
+    <value>End1 Is Auto Property</value>
     <comment>DisplayName for DomainProperty &apos;SourceAutoProperty&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourceAutoProperty.Category" xml:space="preserve">
@@ -2382,12 +2434,24 @@
     <comment>Description for DomainProperty &apos;IsSourceAbstract&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/IsSourceAbstract.DisplayName" xml:space="preserve">
-    <value>End2 Is Abstract</value>
+    <value>End1 Is Abstract</value>
     <comment>DisplayName for DomainProperty &apos;IsSourceAbstract&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/IsSourceAbstract.Category" xml:space="preserve">
     <value>End 1</value>
     <comment>Category for DomainProperty &apos;IsSourceAbstract&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourceAutoInclude.Description" xml:space="preserve">
+    <value>If true, the property at End2 will be automatically included in queries</value>
+    <comment>Description for DomainProperty &apos;SourceAutoInclude&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourceAutoInclude.DisplayName" xml:space="preserve">
+    <value>End1 Auto Include</value>
+    <comment>DisplayName for DomainProperty &apos;SourceAutoInclude&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
+  </data>
+  <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/SourceAutoInclude.Category" xml:space="preserve">
+    <value>End 1</value>
+    <comment>Category for DomainProperty &apos;SourceAutoInclude&apos; on DomainClass &apos;BidirectionalAssociation&apos;</comment>
   </data>
   <data name="Sawczyn.EFDesigner.EFModel.BidirectionalAssociation/BidirectionalSource.Description" xml:space="preserve">
     <value></value>
@@ -4072,6 +4136,10 @@ A DomainClass can be serialized as a moniker only if
   </data>
   <data name="ClassShapeSQLGlyphDefaultImage" type="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
     <value>..\Resources\SQL.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <comment>Icon decorator default image</comment>
+  </data>
+  <data name="ClassShapeInterfaceDefaultImage" type="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+    <value>..\Resources\Interface.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment>Icon decorator default image</comment>
   </data>
   <data name="EnumShapeEnumGlyphDefaultImage" type="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">

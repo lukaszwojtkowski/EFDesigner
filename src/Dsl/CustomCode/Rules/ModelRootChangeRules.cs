@@ -47,6 +47,13 @@ namespace Sawczyn.EFDesigner.EFModel
 
                break;
 
+            case "DatabaseCollationDefault":
+
+               if (string.IsNullOrEmpty(element.DatabaseCollationDefault))
+                  element.DatabaseCollationDefault = "default";
+
+               break;
+
             case "EntityFrameworkPackageVersion":
 
                if (element.EntityFrameworkVersion == EFVersion.EFCore)
@@ -217,6 +224,11 @@ namespace Sawczyn.EFDesigner.EFModel
                foreach (EFModelDiagram diagram in element.GetDiagrams())
                   diagram.ShowGrid = (bool)e.NewValue;
 
+               redraw = true;
+               
+               break;
+
+            case "ShowInterfaceIndicators":
                redraw = true;
 
                break;

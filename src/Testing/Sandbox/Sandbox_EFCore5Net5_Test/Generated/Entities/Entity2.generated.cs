@@ -5,7 +5,7 @@
 //     Manual changes to this file may cause unexpected behavior in your application.
 //     Manual changes to this file will be overwritten if the code is regenerated.
 //
-//     Produced by Entity Framework Visual Editor v3.0.2.0
+//     Produced by Entity Framework Visual Editor
 //     Source:                    https://github.com/msawczyn/EFDesigner
 //     Visual Studio Marketplace: https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner
 //     Documentation:             https://msawczyn.github.io/EFDesigner/
@@ -24,18 +24,50 @@ using System.Runtime.CompilerServices;
 
 namespace Sandbox_EFCore5NetCore3_Test
 {
-   public partial class Entity1
+   public partial class Entity2
    {
       partial void Init();
 
       /// <summary>
-      /// Default constructor
+      /// Default constructor. Protected due to required properties, but present because EF needs it.
       /// </summary>
-      public Entity1()
+      protected Entity2()
       {
-         Entity2 = new System.Collections.Generic.HashSet<global::Sandbox_EFCore5NetCore3_Test.Entity2>();
+         Init();
+      }
+
+      /// <summary>
+      /// Replaces default constructor, since it's protected. Caller assumes responsibility for setting all required values before saving.
+      /// </summary>
+      public static Entity2 CreateEntity2Unsafe()
+      {
+         return new Entity2();
+      }
+
+      /// <summary>
+      /// Public constructor with required data
+      /// </summary>
+      /// <param name="property1"></param>
+      /// <param name="entity1"></param>
+      public Entity2(long property1, global::Sandbox_EFCore5NetCore3_Test.Entity1 entity1)
+      {
+         this.Property1 = property1;
+
+         if (entity1 == null) throw new ArgumentNullException(nameof(entity1));
+         this.Entity1 = entity1;
+         entity1.Entity2.Add(this);
 
          Init();
+      }
+
+      /// <summary>
+      /// Static create function (for use in LINQ queries, etc.)
+      /// </summary>
+      /// <param name="property1"></param>
+      /// <param name="entity1"></param>
+      public static Entity2 Create(long property1, global::Sandbox_EFCore5NetCore3_Test.Entity1 entity1)
+      {
+         return new Entity2(property1, entity1);
       }
 
       /*************************************************************************
@@ -51,11 +83,20 @@ namespace Sandbox_EFCore5NetCore3_Test
       [System.ComponentModel.Description("Unique identifier")]
       public long Id { get; set; }
 
+      /// <summary>
+      /// Required
+      /// </summary>
+      [Required]
+      public long Property1 { get; set; }
+
       /*************************************************************************
        * Navigation properties
        *************************************************************************/
 
-      public virtual ICollection<global::Sandbox_EFCore5NetCore3_Test.Entity2> Entity2 { get; private set; }
+      /// <summary>
+      /// Required
+      /// </summary>
+      public virtual global::Sandbox_EFCore5NetCore3_Test.Entity1 Entity1 { get; set; }
 
    }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Dsl xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="9987f227-3d05-49b7-b151-857879f5dfb8" Description="Entity Framework visual editor for EF6, EFCore and beyond." Name="EFModel" DisplayName="Entity Framework Visual Editor" Namespace="Sawczyn.EFDesigner.EFModel" MajorVersion="3" Build="2" ProductName="EFDesigner" CompanyName="Michael Sawczyn" PackageGuid="56bbe1ba-aaee-4883-848f-e3c8656f8db2" PackageNamespace="Sawczyn.EFDesigner.EFModel" xmlns="http://schemas.microsoft.com/VisualStudio/2005/DslTools/DslDefinitionModel">
+<Dsl xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="9987f227-3d05-49b7-b151-857879f5dfb8" Description="Entity Framework visual editor for EF6, EFCore and beyond." Name="EFModel" DisplayName="Entity Framework Visual Editor" Namespace="Sawczyn.EFDesigner.EFModel" MajorVersion="3" Build="4" Revision="2" ProductName="EFDesigner" CompanyName="Michael Sawczyn" PackageGuid="56bbe1ba-aaee-4883-848f-e3c8656f8db2" PackageNamespace="Sawczyn.EFDesigner.EFModel" xmlns="http://schemas.microsoft.com/VisualStudio/2005/DslTools/DslDefinitionModel">
   <Classes>
     <DomainClass Id="95532cb8-3452-4b09-a654-aeb2e2d0b3ad" Description="" Name="ModelRoot" DisplayName="Entity Model" Namespace="Sawczyn.EFDesigner.EFModel">
       <CustomTypeDescriptor>
@@ -355,6 +355,16 @@
             <DomainEnumerationMoniker Name="ShadowKeyPattern" />
           </Type>
         </DomainProperty>
+        <DomainProperty Id="cfe875fc-11d2-4c6a-a6c3-6e863654cd6d" Description="Default value for attribute AutoProperty setting" Name="AutoPropertyDefault" DisplayName="AutoProperty Default" DefaultValue="true" Category="Code Generation">
+          <Type>
+            <ExternalTypeMoniker Name="/System/Boolean" />
+          </Type>
+        </DomainProperty>
+        <DomainProperty Id="7cd4b0cd-84e3-4363-a71d-bac6fae5b39f" Description="If true, will display a UML interface glyph on classes that have custom interfaces defined" Name="ShowInterfaceIndicators" DisplayName="Show Interface Indicators" Category="Designer">
+          <Type>
+            <ExternalTypeMoniker Name="/System/Boolean" />
+          </Type>
+        </DomainProperty>
       </Properties>
       <ElementMergeDirectives>
         <ElementMergeDirective>
@@ -447,7 +457,7 @@
             <ExternalTypeMoniker Name="ModelClassNameProvider" />
           </ElementNameProvider>
         </DomainProperty>
-        <DomainProperty Id="268b5655-43ae-4871-b7e7-2ea7e003d485" Description="Should this class's properties implement INotifyPropertyChanged by default?" Name="ImplementNotify" DisplayName="Implement INotifyPropertyChanged" DefaultValue="false" Category="Code Generation">
+        <DomainProperty Id="268b5655-43ae-4871-b7e7-2ea7e003d485" Description="Should this class's properties implement INotifyPropertyChanged by default?" Name="ImplementNotify" DisplayName="Implement INotifyPropertyChanged" DefaultValue="false" Category="Code Generation" IsBrowsable="false">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
@@ -528,7 +538,7 @@
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="aae9a58c-df8c-4557-826a-f0a66bb75d66" Description="Default value for this class's attribute AutoProperty setting" Name="AutoPropertyDefault" DisplayName="AutoProperty Default" DefaultValue="true" Category="Code Generation">
+        <DomainProperty Id="aae9a58c-df8c-4557-826a-f0a66bb75d66" Description="Default value for this class's attribute AutoProperty setting" Name="AutoPropertyDefault" DisplayName="AutoProperty Default" DefaultValue="" Kind="CustomStorage" Category="Code Generation" IsBrowsable="false">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
@@ -574,6 +584,16 @@
           </Type>
         </DomainProperty>
         <DomainProperty Id="52231828-eb28-4dc3-a671-7a6b2698a2b2" Description="If true, Model.DefaultConstructorVisibility tracks ModelRoot.EntityDefaultConstructorVisibilityDefault" Name="IsDefaultConstructorVisibilityTracking" DisplayName="Is Default Constructor Visibility Tracking" DefaultValue="true" IsBrowsable="false">
+          <Type>
+            <ExternalTypeMoniker Name="/System/Boolean" />
+          </Type>
+        </DomainProperty>
+        <DomainProperty Id="711f369a-38d3-4e2e-812d-9654ef72c1d6" Description="If true, ModelClass.AutoPropertyDefault tracks ModelRoot.AutoPropertyDefault" Name="IsAutoPropertyDefaultTracking" DisplayName="Is Auto Property Default Tracking" DefaultValue="true" IsBrowsable="false">
+          <Type>
+            <ExternalTypeMoniker Name="/System/Boolean" />
+          </Type>
+        </DomainProperty>
+        <DomainProperty Id="51846d70-8b42-4cef-843b-57cd97af3b91" Description="Used internally to determine whether an interface glyph should be shown on the diagram for the class" Name="ShouldShowInterfaceGlyph" DisplayName="Should Show Interface Glyph" Kind="Calculated" SetterAccessModifier="Private" IsBrowsable="false" IsUIReadOnly="true">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
@@ -765,14 +785,14 @@
           </Type>
         </DomainProperty>
         <DomainProperty Id="c54c284f-10d6-4a49-8fc1-0bcf4bab8c6f" Description="Any custom attributes to be generated for this element.  Will be passed through as entered." Name="CustomAttributes" DisplayName="Custom Attributes" Category="Code Generation">
-           <Attributes>
-              <ClrAttribute Name="System.ComponentModel.Editor">
-                 <Parameters>
-                    <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
-                    <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
-                 </Parameters>
-              </ClrAttribute>
-           </Attributes>
+          <Attributes>
+            <ClrAttribute Name="System.ComponentModel.Editor">
+              <Parameters>
+                <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
+                <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
+              </Parameters>
+            </ClrAttribute>
+          </Attributes>
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -936,14 +956,14 @@
           </Type>
         </DomainProperty>
         <DomainProperty Id="d4b2ab6e-54f5-4b70-94b0-403025b01541" Description="Any custom attributes to be generated for this element. Will be passed through as entered." Name="CustomAttributes" DisplayName="Custom Attributes" Category="Code Generation">
-           <Attributes>
-              <ClrAttribute Name="System.ComponentModel.Editor">
-                 <Parameters>
-                    <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
-                    <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
-                 </Parameters>
-              </ClrAttribute>
-           </Attributes>
+          <Attributes>
+            <ClrAttribute Name="System.ComponentModel.Editor">
+              <Parameters>
+                <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
+                <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
+              </Parameters>
+            </ClrAttribute>
+          </Attributes>
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -1013,14 +1033,14 @@
           </Type>
         </DomainProperty>
         <DomainProperty Id="f01f16bc-6d9b-4b19-ad24-182b32379961" Description="Any custom attributes to be generated for this element. Will be passed through as entered." Name="CustomAttributes" DisplayName="Custom Attributes" Category="Code Generation">
-           <Attributes>
-              <ClrAttribute Name="System.ComponentModel.Editor">
-                 <Parameters>
-                    <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
-                    <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
-                 </Parameters>
-              </ClrAttribute>
-           </Attributes>
+          <Attributes>
+            <ClrAttribute Name="System.ComponentModel.Editor">
+              <Parameters>
+                <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
+                <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
+              </Parameters>
+            </ClrAttribute>
+          </Attributes>
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -1078,7 +1098,7 @@
             <DomainEnumerationMoniker Name="Multiplicity" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="81625766-4885-46ba-a535-c3e23a7c5f88" Description="Name of the entity property that returns the value at this end" Name="TargetPropertyName" DisplayName="End1 Navigation Property" DefaultValue="" Category="End 2">
+        <DomainProperty Id="81625766-4885-46ba-a535-c3e23a7c5f88" Description="Name of the entity property that returns the value at this end" Name="TargetPropertyName" DisplayName="End2 Navigation Property" DefaultValue="" Category="End 2">
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -1180,14 +1200,14 @@
           </Type>
         </DomainProperty>
         <DomainProperty Id="a667dd36-ac5c-4c98-b368-b84778bdcd56" Description="Any custom attributes to be generated for the target property. Will be passed through as entered." Name="TargetCustomAttributes" DisplayName="End2 Custom Attributes" Category="End 2">
-           <Attributes>
-              <ClrAttribute Name="System.ComponentModel.Editor">
-                 <Parameters>
-                    <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
-                    <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
-                 </Parameters>
-              </ClrAttribute>
-           </Attributes>
+          <Attributes>
+            <ClrAttribute Name="System.ComponentModel.Editor">
+              <Parameters>
+                <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
+                <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
+              </Parameters>
+            </ClrAttribute>
+          </Attributes>
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -1212,7 +1232,7 @@
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="0b56420b-5f48-4e04-9288-6d6a6f12ce9f" Description="Decorator text" Name="TargetPropertyNameDisplay" DisplayName="Target Property Name Display" Kind="Calculated" Category="End2" IsBrowsable="false">
+        <DomainProperty Id="0b56420b-5f48-4e04-9288-6d6a6f12ce9f" Description="Decorator text" Name="TargetPropertyNameDisplay" DisplayName="Target Property Name Display" Kind="Calculated" Category="End 2" IsBrowsable="false">
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -1227,12 +1247,12 @@
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="a922ed78-450a-42bd-87f9-c355a432a67f" Description="The name of the backing field for this property" Name="TargetBackingFieldName" DisplayName="End1 Backing Field" Kind="CustomStorage" Category="End 2">
+        <DomainProperty Id="a922ed78-450a-42bd-87f9-c355a432a67f" Description="The name of the backing field for this property" Name="TargetBackingFieldName" DisplayName="End2 Backing Field" Kind="CustomStorage" Category="End 2">
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="9110fead-38f5-46b5-b3b1-e9c3c6cea99b" Description="Defines how EF reads and write this property or its backing field. See  https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.propertyaccessmode" Name="TargetPropertyAccessMode" DisplayName="End1 Property Access Mode" DefaultValue="FieldDuringConstruction" Category="End 2">
+        <DomainProperty Id="9110fead-38f5-46b5-b3b1-e9c3c6cea99b" Description="Defines how EF reads and write this property or its backing field. See  https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.propertyaccessmode" Name="TargetPropertyAccessMode" DisplayName="End2 Property Access Mode" DefaultValue="FieldDuringConstruction" Category="End 2">
           <Attributes>
             <ClrAttribute Name="System.ComponentModel.TypeConverter">
               <Parameters>
@@ -1244,7 +1264,7 @@
             <DomainEnumerationMoniker Name="PropertyAccessMode" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="6b0a49d6-1220-4c69-a7d4-35fb2469bd3e" Description="If false, generates a backing field and a partial method to hook getting and setting the property. If true, generates a simple auto property. Only valid for non-collection properties." Name="TargetAutoProperty" DisplayName="End1 Is Auto Property" DefaultValue="" Kind="CustomStorage" Category="End 2" IsBrowsable="false">
+        <DomainProperty Id="6b0a49d6-1220-4c69-a7d4-35fb2469bd3e" Description="If false, generates a backing field and a partial method to hook getting and setting the property. If true, generates a simple auto property. Only valid for non-collection properties." Name="TargetAutoProperty" DisplayName="End2 Is Auto Property" DefaultValue="" Kind="CustomStorage" Category="End 2" IsBrowsable="false">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
@@ -1254,7 +1274,12 @@
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="c264b738-eb47-4cdf-9ee2-65bd0ca445a0" Description="If true, the property for this end will be abstract" Name="IsTargetAbstract" DisplayName="End1 Is Abstract" Category="End2">
+        <DomainProperty Id="c264b738-eb47-4cdf-9ee2-65bd0ca445a0" Description="If true, the property for this end will be abstract" Name="IsTargetAbstract" DisplayName="End2 Is Abstract" Category="End 2">
+          <Type>
+            <ExternalTypeMoniker Name="/System/Boolean" />
+          </Type>
+        </DomainProperty>
+        <DomainProperty Id="5eaf5db2-b617-46f6-b2b5-586bc563ed61" Description="If true, the property at End1 will be automatically included in queries" Name="TargetAutoInclude" DisplayName="End2 Auto Include" Category="End 2">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
@@ -1356,7 +1381,7 @@
         <DomainRelationshipMoniker Name="Association" />
       </BaseRelationship>
       <Properties>
-        <DomainProperty Id="1e0e43de-1ed5-42e9-9c81-8fee8d85b4cf" Description="Name of the entity property that returns the value at this end" Name="SourcePropertyName" DisplayName="End2 Navigation Property" DefaultValue="" Category="End 1">
+        <DomainProperty Id="1e0e43de-1ed5-42e9-9c81-8fee8d85b4cf" Description="Name of the entity property that returns the value at this end" Name="SourcePropertyName" DisplayName="End1 Navigation Property" DefaultValue="" Category="End 1">
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -1388,14 +1413,14 @@
           </Type>
         </DomainProperty>
         <DomainProperty Id="124bb49e-c952-4a7f-801a-a7af0a985fc4" Description="Any custom attributes to be generated for the source property. Will be passed through as entered." Name="SourceCustomAttributes" DisplayName="End1 Custom Attributes" Category="End 1">
-           <Attributes>
-              <ClrAttribute Name="System.ComponentModel.Editor">
-                 <Parameters>
-                    <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
-                    <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
-                 </Parameters>
-              </ClrAttribute>
-           </Attributes>
+          <Attributes>
+            <ClrAttribute Name="System.ComponentModel.Editor">
+              <Parameters>
+                <AttributeParameter Value="typeof(System.ComponentModel.Design.MultilineStringEditor)" />
+                <AttributeParameter Value="typeof(System.Drawing.Design.UITypeEditor)" />
+              </Parameters>
+            </ClrAttribute>
+          </Attributes>
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
@@ -1415,12 +1440,12 @@
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="0f8bd2a8-4b1c-429d-96db-afbe59253dc6" Description="Decorator text" Name="SourcePropertyNameDisplay" DisplayName="Source Property Name Display" Kind="Calculated" Category="End2" IsBrowsable="false">
+        <DomainProperty Id="0f8bd2a8-4b1c-429d-96db-afbe59253dc6" Description="Decorator text" Name="SourcePropertyNameDisplay" DisplayName="Source Property Name Display" Kind="Calculated" Category="End 2" IsBrowsable="false">
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="4c6e4f43-ba09-43bf-bb1c-ca0ead535a0d" Description="Defines how EF reads and write this property or its backing field. See  https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.propertyaccessmode" Name="SourcePropertyAccessMode" DisplayName="End 2 Property Access Mode" DefaultValue="FieldDuringConstruction" Category="End 1">
+        <DomainProperty Id="4c6e4f43-ba09-43bf-bb1c-ca0ead535a0d" Description="Defines how EF reads and write this property or its backing field. See  https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.propertyaccessmode" Name="SourcePropertyAccessMode" DisplayName="End1 Property Access Mode" DefaultValue="FieldDuringConstruction" Category="End 1">
           <Attributes>
             <ClrAttribute Name="System.ComponentModel.TypeConverter">
               <Parameters>
@@ -1432,12 +1457,12 @@
             <DomainEnumerationMoniker Name="PropertyAccessMode" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="8b64e83b-9fcc-42b7-a362-9c2931de3ce2" Description="The name of the backing field for this property" Name="SourceBackingFieldName" DisplayName="End 2 Backing Field" Kind="CustomStorage" Category="End 1">
+        <DomainProperty Id="8b64e83b-9fcc-42b7-a362-9c2931de3ce2" Description="The name of the backing field for this property" Name="SourceBackingFieldName" DisplayName="End1 Backing Field" Kind="CustomStorage" Category="End 1">
           <Type>
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="d21b9158-3044-468d-8987-073fb9976623" Description="If false, generates a backing field and a partial method to hook getting and setting the property. If true, generates a simple auto property. Only valid for non-collection properties." Name="SourceAutoProperty" DisplayName="End2 Is Auto Property" DefaultValue="" Kind="CustomStorage" Category="End 1" IsBrowsable="false">
+        <DomainProperty Id="d21b9158-3044-468d-8987-073fb9976623" Description="If false, generates a backing field and a partial method to hook getting and setting the property. If true, generates a simple auto property. Only valid for non-collection properties." Name="SourceAutoProperty" DisplayName="End1 Is Auto Property" DefaultValue="" Kind="CustomStorage" Category="End 1" IsBrowsable="false">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
@@ -1447,7 +1472,12 @@
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
         </DomainProperty>
-        <DomainProperty Id="1efba570-fa00-474d-bc74-24fcb518411a" Description="If true, the property for this end will be abstract" Name="IsSourceAbstract" DisplayName="End2 Is Abstract" Category="End 1">
+        <DomainProperty Id="1efba570-fa00-474d-bc74-24fcb518411a" Description="If true, the property for this end will be abstract" Name="IsSourceAbstract" DisplayName="End1 Is Abstract" Category="End 1">
+          <Type>
+            <ExternalTypeMoniker Name="/System/Boolean" />
+          </Type>
+        </DomainProperty>
+        <DomainProperty Id="395328e3-aaf0-4b71-8982-c4e1435506d7" Description="If true, the property at End2 will be automatically included in queries" Name="SourceAutoInclude" DisplayName="End1 Auto Include" Category="End 1">
           <Type>
             <ExternalTypeMoniker Name="/System/Boolean" />
           </Type>
@@ -1880,6 +1910,9 @@
       <ShapeHasDecorators Position="InnerTopLeft" HorizontalOffset="0" VerticalOffset="0">
         <IconDecorator Name="SQLGlyph" DisplayName="Query Type" DefaultIcon="Resources\SQL.png" />
       </ShapeHasDecorators>
+      <ShapeHasDecorators Position="OuterTopLeft" HorizontalOffset="0.2" VerticalOffset="0.1">
+        <IconDecorator Name="Interface" DisplayName="Interface" DefaultIcon="Resources\Interface.png" />
+      </ShapeHasDecorators>
       <Compartment Name="AttributesCompartment" Title="Properties" />
       <Compartment Name="AssociationsCompartment" Title="Association Targets" />
       <Compartment Name="SourcesCompartment" Title="Association Sources" />
@@ -2104,6 +2137,9 @@
           <XmlPropertyData XmlName="isTargetAbstract">
             <DomainPropertyMoniker Name="Association/IsTargetAbstract" />
           </XmlPropertyData>
+          <XmlPropertyData XmlName="targetAutoInclude">
+            <DomainPropertyMoniker Name="Association/TargetAutoInclude" />
+          </XmlPropertyData>
         </ElementData>
       </XmlClassData>
       <XmlClassData TypeName="ClassHasAttributes" MonikerAttributeName="" SerializeId="true" MonikerElementName="classHasAttributesMoniker" ElementName="classHasAttributes" MonikerTypeName="ClassHasAttributesMoniker">
@@ -2285,6 +2321,12 @@
           <XmlPropertyData XmlName="shadowKeyNamePattern">
             <DomainPropertyMoniker Name="ModelRoot/ShadowKeyNamePattern" />
           </XmlPropertyData>
+          <XmlPropertyData XmlName="autoPropertyDefault">
+            <DomainPropertyMoniker Name="ModelRoot/AutoPropertyDefault" />
+          </XmlPropertyData>
+          <XmlPropertyData XmlName="showInterfaceIndicators">
+            <DomainPropertyMoniker Name="ModelRoot/ShowInterfaceIndicators" />
+          </XmlPropertyData>
         </ElementData>
       </XmlClassData>
       <XmlClassData TypeName="ModelClass" MonikerAttributeName="" SerializeId="true" MonikerElementName="modelClassMoniker" ElementName="modelClass" MonikerTypeName="ModelClassMoniker">
@@ -2388,6 +2430,12 @@
           </XmlPropertyData>
           <XmlPropertyData XmlName="isDefaultConstructorVisibilityTracking">
             <DomainPropertyMoniker Name="ModelClass/IsDefaultConstructorVisibilityTracking" />
+          </XmlPropertyData>
+          <XmlPropertyData XmlName="isAutoPropertyDefaultTracking">
+            <DomainPropertyMoniker Name="ModelClass/IsAutoPropertyDefaultTracking" />
+          </XmlPropertyData>
+          <XmlPropertyData XmlName="shouldShowInterfaceGlyph" Representation="Ignore">
+            <DomainPropertyMoniker Name="ModelClass/ShouldShowInterfaceGlyph" />
           </XmlPropertyData>
         </ElementData>
       </XmlClassData>
@@ -2565,6 +2613,9 @@
           </XmlPropertyData>
           <XmlPropertyData XmlName="isSourceAbstract">
             <DomainPropertyMoniker Name="BidirectionalAssociation/IsSourceAbstract" />
+          </XmlPropertyData>
+          <XmlPropertyData XmlName="sourceAutoInclude">
+            <DomainPropertyMoniker Name="BidirectionalAssociation/SourceAutoInclude" />
           </XmlPropertyData>
         </ElementData>
       </XmlClassData>
@@ -3002,6 +3053,16 @@
             <DomainPropertyMoniker Name="ModelClass/GlyphType" />
             <PropertyFilters>
               <PropertyFilter FilteringValue="DictionaryGlyph" />
+            </PropertyFilters>
+          </VisibilityPropertyPath>
+        </DecoratorMap>
+        <DecoratorMap>
+          <IconDecoratorMoniker Name="ClassShape/Interface" />
+          <VisibilityPropertyPath>
+            <DomainPropertyMoniker Name="ModelClass/ShouldShowInterfaceGlyph" />
+            <DomainPath />
+            <PropertyFilters>
+              <PropertyFilter FilteringValue="True" />
             </PropertyFilters>
           </VisibilityPropertyPath>
         </DecoratorMap>

@@ -4514,6 +4514,184 @@ namespace Sawczyn.EFDesigner.EFModel
 		}
 		
 		#endregion
+		#region AutoPropertyDefault domain property code
+		
+		/// <summary>
+		/// AutoPropertyDefault domain property Id.
+		/// </summary>
+		public static readonly global::System.Guid AutoPropertyDefaultDomainPropertyId = new global::System.Guid(0xcfe875fc, 0x11d2, 0x4c6a, 0xa6, 0xc3, 0x6e, 0x86, 0x36, 0x54, 0xcd, 0x6d);
+		
+		/// <summary>
+		/// Storage for AutoPropertyDefault
+		/// </summary>
+		private global::System.Boolean autoPropertyDefaultPropertyStorage = true;
+		
+		/// <summary>
+		/// Gets or sets the value of AutoPropertyDefault domain property.
+		/// Default value for attribute AutoProperty setting
+		/// </summary>
+		[DslDesign::DisplayNameResource("Sawczyn.EFDesigner.EFModel.ModelRoot/AutoPropertyDefault.DisplayName", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::CategoryResource("Sawczyn.EFDesigner.EFModel.ModelRoot/AutoPropertyDefault.Category", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Sawczyn.EFDesigner.EFModel.ModelRoot/AutoPropertyDefault.Description", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[global::System.ComponentModel.DefaultValue(true)]
+		[DslModeling::DomainObjectId("cfe875fc-11d2-4c6a-a6c3-6e863654cd6d")]
+		public global::System.Boolean AutoPropertyDefault
+		{
+			[global::System.Diagnostics.DebuggerStepThrough]
+			get
+			{
+				return autoPropertyDefaultPropertyStorage;
+			}
+			[global::System.Diagnostics.DebuggerStepThrough]
+			set
+			{
+				AutoPropertyDefaultPropertyHandler.Instance.SetValue(this, value);
+			}
+		}
+		/// <summary>
+		/// Value handler for the ModelRoot.AutoPropertyDefault domain property.
+		/// </summary>
+		internal sealed partial class AutoPropertyDefaultPropertyHandler : DslModeling::DomainPropertyValueHandler<ModelRoot, global::System.Boolean>
+		{
+			private AutoPropertyDefaultPropertyHandler() { }
+		
+			/// <summary>
+			/// Gets the singleton instance of the ModelRoot.AutoPropertyDefault domain property value handler.
+			/// </summary>
+			public static readonly AutoPropertyDefaultPropertyHandler Instance = new AutoPropertyDefaultPropertyHandler();
+		
+			/// <summary>
+			/// Gets the Id of the ModelRoot.AutoPropertyDefault domain property.
+			/// </summary>
+			public sealed override global::System.Guid DomainPropertyId
+			{
+				[global::System.Diagnostics.DebuggerStepThrough]
+				get
+				{
+					return AutoPropertyDefaultDomainPropertyId;
+				}
+			}
+			
+			/// <summary>
+			/// Gets a strongly-typed value of the property on specified element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <returns>Property value.</returns>
+			public override sealed global::System.Boolean GetValue(ModelRoot element)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+				return element.autoPropertyDefaultPropertyStorage;
+			}
+		
+			/// <summary>
+			/// Sets property value on an element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <param name="newValue">New property value.</param>
+			public override sealed void SetValue(ModelRoot element, global::System.Boolean newValue)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+		
+				global::System.Boolean oldValue = GetValue(element);
+				if (newValue != oldValue)
+				{
+					ValueChanging(element, oldValue, newValue);
+					element.autoPropertyDefaultPropertyStorage = newValue;
+					ValueChanged(element, oldValue, newValue);
+				}
+			}
+		}
+		
+		#endregion
+		#region ShowInterfaceIndicators domain property code
+		
+		/// <summary>
+		/// ShowInterfaceIndicators domain property Id.
+		/// </summary>
+		public static readonly global::System.Guid ShowInterfaceIndicatorsDomainPropertyId = new global::System.Guid(0x7cd4b0cd, 0x84e3, 0x4363, 0xa7, 0x1d, 0xba, 0xc6, 0xfa, 0xe5, 0xb3, 0x9f);
+		
+		/// <summary>
+		/// Storage for ShowInterfaceIndicators
+		/// </summary>
+		private global::System.Boolean showInterfaceIndicatorsPropertyStorage;
+		
+		/// <summary>
+		/// Gets or sets the value of ShowInterfaceIndicators domain property.
+		/// If true, will display a UML interface glyph on classes that have custom
+		/// interfaces defined
+		/// </summary>
+		[DslDesign::DisplayNameResource("Sawczyn.EFDesigner.EFModel.ModelRoot/ShowInterfaceIndicators.DisplayName", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::CategoryResource("Sawczyn.EFDesigner.EFModel.ModelRoot/ShowInterfaceIndicators.Category", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Sawczyn.EFDesigner.EFModel.ModelRoot/ShowInterfaceIndicators.Description", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslModeling::DomainObjectId("7cd4b0cd-84e3-4363-a71d-bac6fae5b39f")]
+		public global::System.Boolean ShowInterfaceIndicators
+		{
+			[global::System.Diagnostics.DebuggerStepThrough]
+			get
+			{
+				return showInterfaceIndicatorsPropertyStorage;
+			}
+			[global::System.Diagnostics.DebuggerStepThrough]
+			set
+			{
+				ShowInterfaceIndicatorsPropertyHandler.Instance.SetValue(this, value);
+			}
+		}
+		/// <summary>
+		/// Value handler for the ModelRoot.ShowInterfaceIndicators domain property.
+		/// </summary>
+		internal sealed partial class ShowInterfaceIndicatorsPropertyHandler : DslModeling::DomainPropertyValueHandler<ModelRoot, global::System.Boolean>
+		{
+			private ShowInterfaceIndicatorsPropertyHandler() { }
+		
+			/// <summary>
+			/// Gets the singleton instance of the ModelRoot.ShowInterfaceIndicators domain property value handler.
+			/// </summary>
+			public static readonly ShowInterfaceIndicatorsPropertyHandler Instance = new ShowInterfaceIndicatorsPropertyHandler();
+		
+			/// <summary>
+			/// Gets the Id of the ModelRoot.ShowInterfaceIndicators domain property.
+			/// </summary>
+			public sealed override global::System.Guid DomainPropertyId
+			{
+				[global::System.Diagnostics.DebuggerStepThrough]
+				get
+				{
+					return ShowInterfaceIndicatorsDomainPropertyId;
+				}
+			}
+			
+			/// <summary>
+			/// Gets a strongly-typed value of the property on specified element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <returns>Property value.</returns>
+			public override sealed global::System.Boolean GetValue(ModelRoot element)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+				return element.showInterfaceIndicatorsPropertyStorage;
+			}
+		
+			/// <summary>
+			/// Sets property value on an element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <param name="newValue">New property value.</param>
+			public override sealed void SetValue(ModelRoot element, global::System.Boolean newValue)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+		
+				global::System.Boolean oldValue = GetValue(element);
+				if (newValue != oldValue)
+				{
+					ValueChanging(element, oldValue, newValue);
+					element.showInterfaceIndicatorsPropertyStorage = newValue;
+					ValueChanged(element, oldValue, newValue);
+				}
+			}
+		}
+		
+		#endregion
 		#region Comments opposite domain role accessor
 		
 		/// <summary>
@@ -5619,6 +5797,7 @@ namespace Sawczyn.EFDesigner.EFModel
 		[DslDesign::DisplayNameResource("Sawczyn.EFDesigner.EFModel.ModelClass/ImplementNotify.DisplayName", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
 		[DslDesign::CategoryResource("Sawczyn.EFDesigner.EFModel.ModelClass/ImplementNotify.Category", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
 		[DslDesign::DescriptionResource("Sawczyn.EFDesigner.EFModel.ModelClass/ImplementNotify.Description", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[global::System.ComponentModel.Browsable(false)]
 		[DslModeling::DomainObjectId("268b5655-43ae-4871-b7e7-2ea7e003d485")]
 		public global::System.Boolean ImplementNotify
 		{
@@ -6480,25 +6659,21 @@ namespace Sawczyn.EFDesigner.EFModel
 		public static readonly global::System.Guid AutoPropertyDefaultDomainPropertyId = new global::System.Guid(0xaae9a58c, 0xdf8c, 0x4557, 0x82, 0x6a, 0xf0, 0xa6, 0x6b, 0xb7, 0x5d, 0x66);
 		
 		/// <summary>
-		/// Storage for AutoPropertyDefault
-		/// </summary>
-		private global::System.Boolean autoPropertyDefaultPropertyStorage = true;
-		
-		/// <summary>
 		/// Gets or sets the value of AutoPropertyDefault domain property.
 		/// Default value for this class's attribute AutoProperty setting
 		/// </summary>
 		[DslDesign::DisplayNameResource("Sawczyn.EFDesigner.EFModel.ModelClass/AutoPropertyDefault.DisplayName", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
 		[DslDesign::CategoryResource("Sawczyn.EFDesigner.EFModel.ModelClass/AutoPropertyDefault.Category", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
 		[DslDesign::DescriptionResource("Sawczyn.EFDesigner.EFModel.ModelClass/AutoPropertyDefault.Description", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
-		[global::System.ComponentModel.DefaultValue(true)]
+		[global::System.ComponentModel.Browsable(false)]
+		[DslModeling::DomainProperty(Kind = DslModeling::DomainPropertyKind.CustomStorage)]
 		[DslModeling::DomainObjectId("aae9a58c-df8c-4557-826a-f0a66bb75d66")]
 		public global::System.Boolean AutoPropertyDefault
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return autoPropertyDefaultPropertyStorage;
+				return AutoPropertyDefaultPropertyHandler.Instance.GetValue(this);
 			}
 			[global::System.Diagnostics.DebuggerStepThrough]
 			set
@@ -6538,7 +6713,10 @@ namespace Sawczyn.EFDesigner.EFModel
 			public override sealed global::System.Boolean GetValue(ModelClass element)
 			{
 				if (element == null) throw new global::System.ArgumentNullException("element");
-				return element.autoPropertyDefaultPropertyStorage;
+				// There is no storage for AutoPropertyDefault because its Kind is
+				// set to CustomStorage. Please provide the GetAutoPropertyDefaultValue()
+				// method on the domain class.
+				return element.GetAutoPropertyDefaultValue();
 			}
 		
 			/// <summary>
@@ -6554,8 +6732,11 @@ namespace Sawczyn.EFDesigner.EFModel
 				if (newValue != oldValue)
 				{
 					ValueChanging(element, oldValue, newValue);
-					element.autoPropertyDefaultPropertyStorage = newValue;
-					ValueChanged(element, oldValue, newValue);
+					// There is no storage for AutoPropertyDefault because its Kind is
+					// set to CustomStorage. Please provide the SetAutoPropertyDefaultValue()
+					// method on the domain class.
+					element.SetAutoPropertyDefaultValue(newValue);
+					ValueChanged(element, oldValue, GetValue(element));
 				}
 			}
 		}
@@ -7362,6 +7543,162 @@ namespace Sawczyn.EFDesigner.EFModel
 					ValueChanged(element, oldValue, newValue);
 				}
 			}
+		}
+		
+		#endregion
+		#region IsAutoPropertyDefaultTracking domain property code
+		
+		/// <summary>
+		/// IsAutoPropertyDefaultTracking domain property Id.
+		/// </summary>
+		public static readonly global::System.Guid IsAutoPropertyDefaultTrackingDomainPropertyId = new global::System.Guid(0x711f369a, 0x38d3, 0x4e2e, 0x81, 0x2d, 0x96, 0x54, 0xef, 0x72, 0xc1, 0xd6);
+		
+		/// <summary>
+		/// Storage for IsAutoPropertyDefaultTracking
+		/// </summary>
+		private global::System.Boolean isAutoPropertyDefaultTrackingPropertyStorage = true;
+		
+		/// <summary>
+		/// Gets or sets the value of IsAutoPropertyDefaultTracking domain property.
+		/// If true, ModelClass.AutoPropertyDefault tracks ModelRoot.AutoPropertyDefault
+		/// </summary>
+		[DslDesign::DisplayNameResource("Sawczyn.EFDesigner.EFModel.ModelClass/IsAutoPropertyDefaultTracking.DisplayName", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Sawczyn.EFDesigner.EFModel.ModelClass/IsAutoPropertyDefaultTracking.Description", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[global::System.ComponentModel.DefaultValue(true)]
+		[global::System.ComponentModel.Browsable(false)]
+		[DslModeling::DomainObjectId("711f369a-38d3-4e2e-812d-9654ef72c1d6")]
+		public global::System.Boolean IsAutoPropertyDefaultTracking
+		{
+			[global::System.Diagnostics.DebuggerStepThrough]
+			get
+			{
+				return isAutoPropertyDefaultTrackingPropertyStorage;
+			}
+			[global::System.Diagnostics.DebuggerStepThrough]
+			set
+			{
+				IsAutoPropertyDefaultTrackingPropertyHandler.Instance.SetValue(this, value);
+			}
+		}
+		/// <summary>
+		/// Value handler for the ModelClass.IsAutoPropertyDefaultTracking domain property.
+		/// </summary>
+		internal sealed partial class IsAutoPropertyDefaultTrackingPropertyHandler : DslModeling::DomainPropertyValueHandler<ModelClass, global::System.Boolean>
+		{
+			private IsAutoPropertyDefaultTrackingPropertyHandler() { }
+		
+			/// <summary>
+			/// Gets the singleton instance of the ModelClass.IsAutoPropertyDefaultTracking domain property value handler.
+			/// </summary>
+			public static readonly IsAutoPropertyDefaultTrackingPropertyHandler Instance = new IsAutoPropertyDefaultTrackingPropertyHandler();
+		
+			/// <summary>
+			/// Gets the Id of the ModelClass.IsAutoPropertyDefaultTracking domain property.
+			/// </summary>
+			public sealed override global::System.Guid DomainPropertyId
+			{
+				[global::System.Diagnostics.DebuggerStepThrough]
+				get
+				{
+					return IsAutoPropertyDefaultTrackingDomainPropertyId;
+				}
+			}
+			
+			/// <summary>
+			/// Gets a strongly-typed value of the property on specified element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <returns>Property value.</returns>
+			public override sealed global::System.Boolean GetValue(ModelClass element)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+				return element.isAutoPropertyDefaultTrackingPropertyStorage;
+			}
+		
+			/// <summary>
+			/// Sets property value on an element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <param name="newValue">New property value.</param>
+			public override sealed void SetValue(ModelClass element, global::System.Boolean newValue)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+		
+				global::System.Boolean oldValue = GetValue(element);
+				if (newValue != oldValue)
+				{
+					ValueChanging(element, oldValue, newValue);
+					element.isAutoPropertyDefaultTrackingPropertyStorage = newValue;
+					ValueChanged(element, oldValue, newValue);
+				}
+			}
+		}
+		
+		#endregion
+		#region ShouldShowInterfaceGlyph domain property code
+		
+		/// <summary>
+		/// ShouldShowInterfaceGlyph domain property Id.
+		/// </summary>
+		public static readonly global::System.Guid ShouldShowInterfaceGlyphDomainPropertyId = new global::System.Guid(0x51846d70, 0x8b42, 0x4cef, 0x84, 0x3b, 0x57, 0xcd, 0x97, 0xaf, 0x3b, 0x91);
+		
+		/// <summary>
+		/// Gets or sets the value of ShouldShowInterfaceGlyph domain property.
+		/// Used internally to determine whether an interface glyph should be shown on the
+		/// diagram for the class
+		/// </summary>
+		[DslDesign::DisplayNameResource("Sawczyn.EFDesigner.EFModel.ModelClass/ShouldShowInterfaceGlyph.DisplayName", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Sawczyn.EFDesigner.EFModel.ModelClass/ShouldShowInterfaceGlyph.Description", typeof(global::Sawczyn.EFDesigner.EFModel.EFModelDomainModel), "Sawczyn.EFDesigner.EFModel.GeneratedCode.DomainModelResx")]
+		[global::System.ComponentModel.Browsable(false)]
+		[global::System.ComponentModel.ReadOnly(true)]
+		[DslModeling::DomainProperty(Kind = DslModeling::DomainPropertyKind.Calculated)]
+		[DslModeling::DomainObjectId("51846d70-8b42-4cef-843b-57cd97af3b91")]
+		public global::System.Boolean ShouldShowInterfaceGlyph
+		{
+			[global::System.Diagnostics.DebuggerStepThrough]
+			get
+			{
+				return ShouldShowInterfaceGlyphPropertyHandler.Instance.GetValue(this);
+			}
+		}
+		/// <summary>
+		/// Value handler for the ModelClass.ShouldShowInterfaceGlyph domain property.
+		/// </summary>
+		internal sealed partial class ShouldShowInterfaceGlyphPropertyHandler : DslModeling::CalculatedPropertyValueHandler<ModelClass, global::System.Boolean>
+		{
+			private ShouldShowInterfaceGlyphPropertyHandler() { }
+		
+			/// <summary>
+			/// Gets the singleton instance of the ModelClass.ShouldShowInterfaceGlyph domain property value handler.
+			/// </summary>
+			public static readonly ShouldShowInterfaceGlyphPropertyHandler Instance = new ShouldShowInterfaceGlyphPropertyHandler();
+		
+			/// <summary>
+			/// Gets the Id of the ModelClass.ShouldShowInterfaceGlyph domain property.
+			/// </summary>
+			public sealed override global::System.Guid DomainPropertyId
+			{
+				[global::System.Diagnostics.DebuggerStepThrough]
+				get
+				{
+					return ShouldShowInterfaceGlyphDomainPropertyId;
+				}
+			}
+			
+			/// <summary>
+			/// Gets a strongly-typed value of the property on specified element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <returns>Property value.</returns>
+			public override sealed global::System.Boolean GetValue(ModelClass element)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+				// There is no storage for ShouldShowInterfaceGlyph because its Kind is
+				// set to Calculated. Please provide the GetShouldShowInterfaceGlyphValue()
+				// method on the domain class.
+				return element.GetShouldShowInterfaceGlyphValue();
+			}
+		
 		}
 		
 		#endregion
@@ -13183,6 +13520,6 @@ namespace Sawczyn.EFDesigner.EFModel
    /// </summary>
 	partial class ModelRoot
 	{
-		public const string DSLVersion = "3.0.2.0";
+		public const string DSLVersion = "3.0.4.2";
 	}
 }
