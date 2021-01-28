@@ -3062,9 +3062,7 @@ namespace Sawczyn.EFDesigner.EFModel
 	            }
 	         }
 	      }
-	   }
-	         }
-	      }
+	   
 	      // IsAutoPropertyDefaultTracking
 	      if (!serializationContext.Result.Failed)
 	      {

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.ConstrainedExecution;
 
-[assembly: AssemblyTitle("Entity Framework Visual Designer")]
+[assembly: AssemblyTitle("Entity Framework Visual Designer Evide version")]
 [assembly: AssemblyDescription("Entity Framework visual design surface and code-first code generation for EF6, EFCore and beyond")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
