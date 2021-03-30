@@ -8,7 +8,7 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
    public partial class GeneratedTextTransformation
    {
       #region Template
-      // EFDesigner v3.0.3
+      // EFDesigner v3.0.4
       // Copyright (c) 2017-2021 Michael Sawczyn
       // https://github.com/msawczyn/EFDesigner
 
@@ -33,11 +33,6 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                segments.Add($"HasKey(t => new {{ t.{string.Join(", t.", identityAttributes.Select(ia => ia.Name))} }})");
          }
 
-         protected override void WriteRequiredNavigationsInConstructorBody(ModelClass modelClass, ref int lineCount)
-         {
-            // don't do this for EFCore5+. Adding these prevents EFCore from assigning the object when deserializing
-         }
-
          protected override List<string> GatherModelAttributeSegments(ModelAttribute modelAttribute)
          {
             List<string> segments = base.GatherModelAttributeSegments(modelAttribute);
@@ -48,8 +43,8 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                {
                   string enumName = modelAttribute.InitialValue.Split('.').First();
                   string enumValue = modelAttribute.InitialValue.Split('.').Last();
-                  string enumFQN = modelAttribute.ModelClass.ModelRoot.Enums.FirstOrDefault(e => e.Name == enumName).FullName;
-                  segments.Add($"HasDefaultValue({enumFQN}.{enumValue.Trim()})");
+                  string enumFQN = modelAttribute.ModelClass.ModelRoot.Enums.FirstOrDefault(e => e.Name == enumName)?.FullName ?? enumName;
+                  segments.Add($"HasDefaultValue({enumFQN.Trim()}.{enumValue.Trim()})");
                }
                else
                {

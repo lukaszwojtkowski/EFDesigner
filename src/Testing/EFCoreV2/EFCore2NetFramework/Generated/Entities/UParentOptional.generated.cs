@@ -29,7 +29,6 @@ namespace Testing
       {
          PropertyInChild = "hello";
          UChildCollection = new System.Collections.Generic.HashSet<global::Testing.UChild>();
-         UChildRequired = global::Testing.UChild.CreateUChildUnsafe();
 
          Init();
       }
@@ -53,7 +52,6 @@ namespace Testing
          this.UChildRequired = uchildrequired;
 
          this.UChildCollection = new System.Collections.Generic.HashSet<global::Testing.UChild>();
-
          Init();
       }
 

@@ -11,12 +11,13 @@ namespace Sawczyn.EFDesigner.EFModel.Extensions
    {
       internal static bool IsVisible(this ModelElement modelElement, Diagram diagram = null)
       {
-         return modelElement.GetShapeElement(diagram).IsVisible(diagram);
+         return modelElement.GetShapeElement(diagram)?.IsVisible(diagram) == true;
       }
 
       internal static bool IsVisible(this ShapeElement shapeElement, Diagram diagram = null)
       {
-         return shapeElement.Diagram == (diagram ?? EFModel.ModelRoot.GetCurrentDiagram()) && shapeElement.IsVisible;
+         Diagram targetDiagram = diagram ?? EFModel.ModelRoot.GetCurrentDiagram();
+         return targetDiagram != null && shapeElement.Diagram == targetDiagram && shapeElement.IsVisible;
       }
 
       private static ShapeElement GetShapeElement(this ModelElement element, Diagram diagram = null)
@@ -32,7 +33,7 @@ namespace Sawczyn.EFDesigner.EFModel.Extensions
             result = diagram.Store.GetAll<ShapeElement>().FirstOrDefault(x => x.ModelElement == element && x.Diagram == diagram);
 
             // If the model element is in a compartment the result should be null? Check for Compartment type just in case
-            if (result == null || result is Compartment)
+            if (result is Compartment)
             {
                ModelElement parentElement = element.GetCompartmentElementFirstParentElement();
                result = parentElement?.GetShapeElement(diagram);
@@ -40,11 +41,6 @@ namespace Sawczyn.EFDesigner.EFModel.Extensions
          }
 
          return result;
-      }
-
-      public static string GetDisplayText(this ModelElement element)
-      {
-         return element.ToString();
       }
 
       private static ModelElement GetCompartmentElementFirstParentElement(this ModelElement modelElement)
@@ -109,12 +105,6 @@ namespace Sawczyn.EFDesigner.EFModel.Extensions
       public static IEnumerable<T> GetAll<T>(this Store store)
       {
          return store?.ElementDirectory?.AllElements?.OfType<T>() ?? new T[0];
-      }
-
-      public static bool LocateInDiagram(this ModelElement element)
-      {
-         DiagramView diagramView = element.GetShapeElement()?.Diagram?.ActiveDiagramView;
-         return diagramView != null && diagramView.SelectModelElement(element);
       }
 
       public static ShapeElement GetFirstShapeElement(this ModelElement element)

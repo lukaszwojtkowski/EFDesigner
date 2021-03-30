@@ -12,7 +12,7 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
    public partial class GeneratedTextTransformation
    {
       #region Template
-      // EFDesigner v3.0.3
+      // EFDesigner v3.0.4
       // Copyright (c) 2017-2021 Michael Sawczyn
       // https://github.com/msawczyn/EFDesigner
 
@@ -141,7 +141,6 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
          protected void Output(List<string> segments) { host.Output(segments); }
          protected void Output(string text) { host.Output(text); }
          protected void Output(string template, params object[] items) { host.Output(template, items); }
-         protected void OutputChopped(List<string> segments) { host.OutputChopped(segments); }
          protected void ClearIndent() { host.ClearIndent(); }
 
          public static string[] NonNullableTypes
@@ -419,6 +418,9 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                                                                                                  ? x.InitialValue.Trim(quote[0])
                                                                                                  : x.InitialValue);
 
+                                                                if (x.FQPrimitiveType == "decimal")
+                                                                   value += "m";
+
                                                                 return $"{x.FQPrimitiveType} {x.Name.ToLower()} = {quote}{value}{quote}";
                                                              }));
             }
@@ -504,29 +506,33 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
          protected string[] GenerateCommentBody(string comment)
          {
             List<string> result = new List<string>();
-            int chunkSize = 80;
-            string[] parts = comment.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string value in parts)
+            if (!string.IsNullOrEmpty(comment))
             {
-               string text = value;
+               int chunkSize = 80;
+               string[] parts = comment.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
 
-               while (text.Length > 0)
+               foreach (string value in parts)
                {
-                  string outputText = text;
+                  string text = value;
 
-                  if (outputText.Length > chunkSize)
+                  while (text.Length > 0)
                   {
-                     outputText = (text.IndexOf(' ', chunkSize) > 0
-                                      ? text.Substring(0, text.IndexOf(' ', chunkSize))
-                                      : text).Trim();
+                     string outputText = text;
 
-                     text = text.Substring(outputText.Length).Trim();
+                     if (outputText.Length > chunkSize)
+                     {
+                        outputText = (text.IndexOf(' ', chunkSize) > 0
+                                         ? text.Substring(0, text.IndexOf(' ', chunkSize))
+                                         : text).Trim();
+
+                        text = text.Substring(outputText.Length).Trim();
+                     }
+                     else
+                        text = string.Empty;
+
+                     result.Add(SecurityElement.Escape(outputText));
                   }
-                  else
-                     text = string.Empty;
-
-                  result.Add(SecurityElement.Escape(outputText));
                }
             }
 
@@ -689,9 +695,14 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                                        ? "'"
                                        : string.Empty;
 
+                  string initialValue = modelAttribute.InitialValue;
+
+                  if (modelAttribute.Type == "decimal")
+                     initialValue += "m";
+
                   Output(quote.Length > 0
-                            ? $"this.{modelAttribute.Name} = {quote}{FullyQualified(modelAttribute.InitialValue.Trim(quote[0]))}{quote};"
-                            : $"this.{modelAttribute.Name} = {quote}{FullyQualified(modelAttribute.InitialValue)}{quote};");
+                            ? $"this.{modelAttribute.Name} = {quote}{FullyQualified(initialValue.Trim(quote[0]))}{quote};"
+                            : $"this.{modelAttribute.Name} = {quote}{FullyQualified(initialValue)}{quote};");
                }
 
                // all required navigation properties that aren't a 1..1 relationship
@@ -703,9 +714,12 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                   string parameterName = requiredNavigationProperty.PropertyName.ToLower();
                   Output($"if ({parameterName} == null) throw new ArgumentNullException(nameof({parameterName}));");
 
-                  Output(requiredNavigationProperty.IsCollection
-                            ? $"{requiredNavigationProperty.PropertyName}.Add({parameterName});"
-                            : $"this.{requiredNavigationProperty.PropertyName} = {parameterName};");
+                  if (!requiredNavigationProperty.ConstructorParameterOnly)
+                  {
+                     Output(requiredNavigationProperty.IsCollection
+                               ? $"{requiredNavigationProperty.PropertyName}.Add({parameterName});"
+                               : $"this.{requiredNavigationProperty.PropertyName} = {parameterName};");
+                  }
 
                   if (!string.IsNullOrEmpty(otherSide.PropertyName))
                   {
@@ -770,11 +784,10 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                                                                                                   && x.SetterVisibility == SetterAccessModifier.Public))
                Output($@"/// <param name=""{requiredAttribute.Name.ToLower()}"">{string.Join(" ", GenerateCommentBody(requiredAttribute.Summary))}</param>");
 
-            // TODO: Add comment if available
             foreach (NavigationProperty requiredNavigationProperty in modelClass.AllRequiredNavigationProperties()
                                                                                 .Where(np => np.AssociationObject.SourceMultiplicity != Sawczyn.EFDesigner.EFModel.Multiplicity.One
                                                                                           || np.AssociationObject.TargetMultiplicity != Sawczyn.EFDesigner.EFModel.Multiplicity.One))
-               Output($@"/// <param name=""{requiredNavigationProperty.PropertyName.ToLower()}""></param>");
+               Output($@"/// <param name=""{requiredNavigationProperty.PropertyName.ToLower()}"">{string.Join(" ", GenerateCommentBody(requiredNavigationProperty.Summary))}</param>");
          }
 
          protected void WriteDbContextComments()
@@ -809,10 +822,14 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                                  : modelAttribute.Type == "Char"
                                     ? "'"
                                     : string.Empty;
+               string initialValue = modelAttribute.InitialValue;
+
+               if (modelAttribute.Type == "decimal")
+                  initialValue += "m";
 
                Output(quote.Length == 1
-                         ? $"{modelAttribute.Name} = {quote}{FullyQualified(modelAttribute.InitialValue.Trim(quote[0]))}{quote};"
-                         : $"{modelAttribute.Name} = {quote}{FullyQualified(modelAttribute.InitialValue)}{quote};");
+                         ? $"{modelAttribute.Name} = {quote}{FullyQualified(initialValue.Trim(quote[0]))}{quote};"
+                         : $"{modelAttribute.Name} = {quote}{FullyQualified(initialValue)}{quote};");
 
                ++lineCount;
             }
@@ -825,33 +842,10 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                ++lineCount;
             }
 
-            WriteRequiredNavigationsInConstructorBody(modelClass, ref lineCount);
-
             if (lineCount > 0)
                NL();
 
             Output("Init();");
-         }
-
-         protected virtual void WriteRequiredNavigationsInConstructorBody(ModelClass modelClass, ref int lineCount)
-         {
-            foreach (NavigationProperty navigationProperty in modelClass.LocalNavigationProperties()
-                                                                        .Where(x => x.AssociationObject.Persistent
-                                                                                 && x.Required
-                                                                                 && !x.IsCollection
-                                                                                 && !x.ConstructorParameterOnly))
-            {
-               if (navigationProperty.ClassType.IsAbstract)
-                  Output($"// Assignment of required association {navigationProperty.ClassType.Name} {navigationProperty.PropertyName} was not generated because {navigationProperty.ClassType.Name} is abstract. This must be assigned with a concrete object before saving.");
-               else
-               {
-                  Output(GetDefaultConstructorVisibility(navigationProperty.ClassType) == "public"
-                            ? $"{navigationProperty.PropertyName} = new {navigationProperty.ClassType.FullName}();"
-                            : $"{navigationProperty.PropertyName} = {navigationProperty.ClassType.FullName}.Create{navigationProperty.ClassType.Name}Unsafe();");
-               }
-
-               ++lineCount;
-            }
          }
 
          protected void WriteEnum(ModelEnum modelEnum)
@@ -1094,7 +1088,12 @@ namespace Sawczyn.EFDesigner.EFModel.EditingOnly
                                        ? "'"
                                        : string.Empty;
 
-                  segments.Add($"Default value = {quote}{FullyQualified(modelAttribute.InitialValue.Trim('"'))}{quote}");
+                  string initialValue = modelAttribute.InitialValue;
+
+                  if (modelAttribute.Type == "decimal")
+                     initialValue += "m";
+
+                  segments.Add($"Default value = {quote}{FullyQualified(initialValue.Trim('"'))}{quote}");
                }
 
                string nullable = IsNullable(modelAttribute)

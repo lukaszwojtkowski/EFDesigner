@@ -28,7 +28,6 @@ namespace Testing
       protected BParentOptional()
       {
          BChildCollection = new System.Collections.Generic.HashSet<global::Testing.BChild>();
-         BChildRequired = global::Testing.BChild.CreateBChildUnsafe();
 
          Init();
       }
@@ -49,9 +48,9 @@ namespace Testing
       {
          if (bchildrequired == null) throw new ArgumentNullException(nameof(bchildrequired));
          this.BChildRequired = bchildrequired;
+         bchildrequired.BParentOptional = this;
 
          this.BChildCollection = new System.Collections.Generic.HashSet<global::Testing.BChild>();
-
          Init();
       }
 
@@ -94,7 +93,7 @@ namespace Testing
             GetId(ref value);
             return (_id = value);
          }
-         protected set
+         set
          {
             int oldValue = _id;
             SetId(oldValue, ref value);

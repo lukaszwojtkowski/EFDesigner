@@ -25,8 +25,11 @@ namespace Sandbox_EFCore5NetCore3_Test
    public partial class Context : DbContext
    {
       #region DbSets
+      public virtual Microsoft.EntityFrameworkCore.DbSet<global::Sandbox_EFCore5NetCore3_Test.AnEntity> AnEntity { get; set; }
       public virtual Microsoft.EntityFrameworkCore.DbSet<global::Sandbox_EFCore5NetCore3_Test.Entity1> Entity1 { get; set; }
       public virtual Microsoft.EntityFrameworkCore.DbSet<global::Sandbox_EFCore5NetCore3_Test.Entity2> Entity2 { get; set; }
+      public virtual Microsoft.EntityFrameworkCore.DbSet<global::Sandbox_EFCore5NetCore3_Test.Entity3> Entity3 { get; set; }
+      public virtual Microsoft.EntityFrameworkCore.DbSet<global::Sandbox_EFCore5NetCore3_Test.Entity4> Entity4 { get; set; }
 
       #endregion DbSets
 
@@ -61,8 +64,13 @@ namespace Sandbox_EFCore5NetCore3_Test
 
          modelBuilder.HasDefaultSchema("dbo");
 
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.AnEntity>().ToTable("AnEntities").HasKey(t => t.Id);
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.AnEntity>().Property(t => t.Id).ValueGeneratedOnAdd().IsRequired();
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.AnEntity>().Property(t => t.Property1).HasDefaultValue(0);
+
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity1>().ToTable("Entity1", t => t.ExcludeFromMigrations()).HasKey(t => t.Id);
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity1>().Property(t => t.Id).ValueGeneratedOnAdd().IsRequired();
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity1>().Property(t => t.Property1).HasDefaultValue(1);
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity1>().HasMany<global::Sandbox_EFCore5NetCore3_Test.Entity2>(p => p.Entity2).WithOne(p => p.Entity1).HasForeignKey("Entity1Id");
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity2>().Navigation(e => e.Entity1).IsRequired();
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity2>().Navigation(e => e.Entity1).AutoInclude();
@@ -70,6 +78,13 @@ namespace Sandbox_EFCore5NetCore3_Test
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity2>().ToTable("Entity2").HasKey(t => t.Id);
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity2>().Property(t => t.Id).ValueGeneratedOnAdd().IsRequired();
          modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity2>().Property(t => t.Property1).IsRequired();
+
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity3>().ToTable("Entity3").HasKey(t => t.Id);
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity3>().Property(t => t.Id).ValueGeneratedOnAdd().IsRequired();
+
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity4>().ToTable("Entity4").HasKey(t => t.Id);
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity4>().Property(t => t.Id).ValueGeneratedOnAdd().IsRequired();
+         modelBuilder.Entity<global::Sandbox_EFCore5NetCore3_Test.Entity4>().HasMany<global::Sandbox_EFCore5NetCore3_Test.Entity3>(p => p.Entity3).WithOne().HasForeignKey("Entity4Entity3Id");
 
          OnModelCreatedImpl(modelBuilder);
       }

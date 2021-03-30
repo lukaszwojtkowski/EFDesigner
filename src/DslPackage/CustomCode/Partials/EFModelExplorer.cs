@@ -14,6 +14,8 @@ using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
+using Sawczyn.EFDesigner.EFModel.Extensions;
+
 namespace Sawczyn.EFDesigner.EFModel
 {
    internal partial class EFModelExplorer : IVsWindowSearch
@@ -157,6 +159,7 @@ namespace Sawczyn.EFDesigner.EFModel
       {
          ThreadHelper.Generic.BeginInvoke(() =>
                                           {
+                                             // ReSharper disable once UnusedVariable
                                              using (WaitCursor w = new WaitCursor())
                                              {
                                                 ObjectModelBrowser.BeginUpdate();
@@ -229,6 +232,7 @@ namespace Sawczyn.EFDesigner.EFModel
             {
                ThreadHelper.Generic.BeginInvoke(() =>
                                                 {
+                                                   // ReSharper disable once UnusedVariable
                                                    using (WaitCursor w = new WaitCursor())
                                                    {
                                                       treeView.SelectedNode = null;
@@ -243,6 +247,7 @@ namespace Sawczyn.EFDesigner.EFModel
             {
                ThreadHelper.Generic.BeginInvoke(() =>
                                                 {
+                                                   // ReSharper disable once UnusedVariable
                                                    using (WaitCursor w = new WaitCursor())
                                                    {
                                                       treeView.SelectedNode = null;
@@ -334,10 +339,10 @@ namespace Sawczyn.EFDesigner.EFModel
          {
             if (node is ExplorerTreeNode elementNode)
             {
-               EFModelRoleGroupTreeNode groupNode = node.Parent as EFModelRoleGroupTreeNode; 
+               EFModelRoleGroupTreeNode groupNode = node.Parent as EFModelRoleGroupTreeNode;
                elementNode.Remove();
 
-               if (groupNode.Nodes.Count == 0 && (elementNode.RepresentedElement is ModelAttribute 
+               if (groupNode.Nodes.Count == 0 && (elementNode.RepresentedElement is ModelAttribute
                                                || elementNode.RepresentedElement is ModelEnumValue))
                   groupNode.Remove();
             }
@@ -388,8 +393,12 @@ namespace Sawczyn.EFDesigner.EFModel
 
       partial void Init()
       {
-         foreach (KeyValuePair<string, Image> image in ClassShape.PropertyImages)
+         // this sets up the images for use in the model explorer. They don't come out of Dsl::Resources.resx directly, but are named the same
+         // See EFModelElementTreeNode.GetExplorerNodeImageName (below) for how this happens.
+         foreach (KeyValuePair<string, Image> image in ClassShape.PropertyImages.Union(ClassShape.ClassImages))
             ObjectModelBrowser.ImageList.Images.Add(image.Key, image.Value);
+         ObjectModelBrowser.ImageList.Images.Add(nameof(Resources.Enumerator_16x), Resources.Enumerator_16x);
+         ObjectModelBrowser.ImageList.Images.Add(nameof(Resources.Enumerator_16xVisible), Resources.Enumerator_16xVisible);
 
          // shoehorn the search widget into the list
          SuspendLayout();
@@ -479,29 +488,29 @@ namespace Sawczyn.EFDesigner.EFModel
          switch (SelectedElement)
          {
             case ModelDiagramData diagramData:
-            {
-               if (BooleanQuestionDisplay.Show(diagramData.Store, $"About to permanently delete diagram named {diagramData.Name} - are you sure?") == true)
                {
-                  base.ProcessOnMenuDeleteCommand();
-                  ObjectModelBrowser.SelectedNode = null;
-               }
+                  if (BooleanQuestionDisplay.Show(diagramData.Store, $"About to permanently delete diagram named {diagramData.Name} - are you sure?") == true)
+                  {
+                     base.ProcessOnMenuDeleteCommand();
+                     ObjectModelBrowser.SelectedNode = null;
+                  }
 
-               break;
-            }
+                  break;
+               }
 
             case ModelEnum modelEnum:
-            {
-               string fullName = modelEnum.FullName.Split('.').Last();
-
-               if (!ModelEnum.IsUsed(modelEnum)
-                || BooleanQuestionDisplay.Show(modelEnum.Store, $"{fullName} is used as an entity property. Deleting the enumeration will remove those properties. Are you sure?") == true)
                {
-                  base.ProcessOnMenuDeleteCommand();
-                  ObjectModelBrowser.SelectedNode = null;
-               }
+                  string fullName = modelEnum.FullName.Split('.').Last();
 
-               break;
-            }
+                  if (!ModelEnum.IsUsed(modelEnum)
+                   || BooleanQuestionDisplay.Show(modelEnum.Store, $"{fullName} is used as an entity property. Deleting the enumeration will remove those properties. Are you sure?") == true)
+                  {
+                     base.ProcessOnMenuDeleteCommand();
+                     ObjectModelBrowser.SelectedNode = null;
+                  }
+
+                  break;
+               }
 
             default:
                base.ProcessOnMenuDeleteCommand();
@@ -607,8 +616,14 @@ namespace Sawczyn.EFDesigner.EFModel
 
          public void UpdateNodeImage()
          {
+            // we're using the images determined by the shape class to keep the explorer and diagram glyphs in sync
+            // available images are determined in EFModelExplorer.Init()
             if (RepresentedElement is ModelAttribute modelAttribute)
-               ThreadHelper.Generic.BeginInvoke(() => { SelectedImageKey = ImageKey = ClassShape.GetExplorerPropertyImageName(modelAttribute); });
+               ThreadHelper.Generic.BeginInvoke(() => { SelectedImageKey = ImageKey = ClassShape.GetExplorerNodeImageName(modelAttribute); });
+            else if (RepresentedElement is ModelClass modelClass)
+               ThreadHelper.Generic.BeginInvoke(() => { SelectedImageKey = ImageKey = ClassShape.GetExplorerNodeImageName(modelClass); });
+            else if (RepresentedElement is ModelEnum modelEnum)
+               ThreadHelper.Generic.BeginInvoke(() => { SelectedImageKey = ImageKey = (modelEnum.IsVisible() ? nameof(Resources.Enumerator_16xVisible) : nameof(Resources.Enumerator_16x)); });
          }
       }
    }

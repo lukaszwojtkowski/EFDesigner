@@ -28,7 +28,6 @@ namespace Testing
       public UParentRequired()
       {
          UChildCollection = new System.Collections.Generic.HashSet<global::Testing.UChild>();
-         UChildRequired = global::Testing.UChild.CreateUChildUnsafe();
 
          Init();
       }
@@ -63,7 +62,7 @@ namespace Testing
             GetId(ref value);
             return (_id = value);
          }
-         protected set
+         set
          {
             int oldValue = _id;
             SetId(oldValue, ref value);
